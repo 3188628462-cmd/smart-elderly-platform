@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智慧养老服务平台 - 让科技温暖晚年生活</title>
+    <title>智慧养老服务平台 - 角色选择</title>
     <style>
         * {
             margin: 0;
@@ -19,10 +19,100 @@
             min-height: 100vh;
         }
 
+        body.role-selection {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4a5568;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo::before {
+            content: "🏠";
+            margin-right: 10px;
+            font-size: 2.5rem;
+        }
+
+        .login-title {
+            font-size: 1.8rem;
+            color: #2d3748;
+            margin-bottom: 30px;
+        }
+
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .role-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .role-card {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+
+        .role-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .role-card h3 {
+            font-size: 1.2rem;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .role-card p {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        .footer-text {
+            margin-top: 20px;
+            color: #718096;
+            font-size: 0.9rem;
         }
 
         /* 导航栏 */
@@ -41,20 +131,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #4a5568;
-            display: flex;
-            align-items: center;
-        }
-
-        .logo::before {
-            content: "🏠";
-            margin-right: 10px;
-            font-size: 2rem;
         }
 
         .nav-menu {
@@ -497,214 +573,553 @@
         }
     </style>
 </head>
-<body>
-    <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-container">
-                <div class="logo">智慧养老</div>
-                <ul class="nav-menu">
-                    <li><a href="#home">首页</a></li>
-                    <li><a href="#services">服务</a></li>
-                    <li><a href="#devices">智能设备</a></li>
-                    <li><a href="#emergency">紧急救援</a></li>
-                    <li><a href="#contact">联系我们</a></li>
-                </ul>
+<body class="role-selection">
+    <!-- 角色选择页面 -->
+    <div id="roleSelection" class="login-container">
+        <div class="logo">智慧养老</div>
+        <h2 class="login-title">请选择您的身份</h2>
+        <div class="role-grid">
+            <div class="role-card" onclick="selectRole('elderly')">
+                <span class="role-icon">👴</span>
+                <h3>老人用户</h3>
+                <p>个人健康管理与生活服务</p>
+            </div>
+            <div class="role-card" onclick="selectRole('family')">
+                <span class="role-icon">👨‍👩‍👧‍👦</span>
+                <h3>家属用户</h3>
+                <p>远程查看与关怀老人</p>
+            </div>
+            <div class="role-card" onclick="selectRole('community')">
+                <span class="role-icon">🏢</span>
+                <h3>社区工作人员</h3>
+                <p>社区服务管理与协调</p>
+            </div>
+            <div class="role-card" onclick="selectRole('medical')">
+                <span class="role-icon">👨‍⚕️</span>
+                <h3>医护人员</h3>
+                <p>专业医疗服务与健康管理</p>
             </div>
         </div>
-    </nav>
+        <p class="footer-text">智慧养老服务平台 - 让科技温暖晚年生活</p>
+    </div>
 
-    <!-- 英雄区域 -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>智慧养老服务平台</h1>
-                <p>让科技温暖晚年生活，为老年人提供全方位的智能化养老服务</p>
-                <a href="#services" class="cta-button">了解更多服务</a>
+    <!-- 主平台内容 -->
+    <div id="mainContent" style="display: none;">
+        <!-- 导航栏 -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-container">
+                    <div class="logo">智慧养老</div>
+                    <ul class="nav-menu">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#services">服务</a></li>
+                        <li><a href="#devices">智能设备</a></li>
+                        <li><a href="#emergency">紧急救援</a></li>
+                        <li><a href="#profile">个人中心</a></li>
+                        <li><a href="#notifications">通知中心</a></li>
+                        <li><a href="#appointments">服务预约</a></li>
+                        <li><a href="javascript:void(0)" onclick="logout()">退出</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </section>
+        </nav>
 
-    <!-- 服务特色 -->
-    <section class="features" id="services">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>我们的服务特色</h2>
-                <p>专业的团队，先进的技术，为老年人打造安全、舒适、便捷的生活环境</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <span class="feature-icon">🏥</span>
-                    <h3>健康监测</h3>
-                    <p>24小时实时监测老人健康状况，包括血压、心率、体温等关键指标，及时发现异常并通知家属和医护人员</p>
-                </div>
-                <div class="feature-card fade-in" onclick="openSmartCall()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <span class="feature-icon">📱</span>
-                    <h3><span class="status-indicator status-online"></span>智能呼叫</h3>
-                    <p>一键呼叫功能，老人遇到紧急情况可立即联系家人、邻居或医护人员，获得及时帮助</p>
-                </div>
-                <div class="feature-card fade-in" onclick="openHomeSecurity()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <span class="feature-icon">🏠</span>
-                    <h3><span class="status-indicator status-online"></span>居家安防</h3>
-                    <p>智能门锁、烟雾报警器、燃气泄漏检测等全方位安防系统，保障老人居家安全</p>
-                </div>
-                <div class="feature-card fade-in" onclick="openLifeServices()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <span class="feature-icon">🍽️</span>
-                    <h3><span class="status-indicator status-online"></span>生活服务</h3>
-                    <p>在线订餐、购物配送、家政清洁等服务，让老人足不出户享受便民生活</p>
-                </div>
-                <div class="feature-card fade-in" onclick="openMedicalCare()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <span class="feature-icon">👨‍⚕️</span>
-                    <h3><span class="status-indicator status-online"></span>医疗陪护</h3>
-                    <p>专业护理人员上门服务，包括日常护理、康复训练、健康咨询等专业医疗服务</p>
-                </div>
-                <div class="feature-card fade-in" onclick="openEntertainmentSocial()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <span class="feature-icon">🎮</span>
-                    <h3><span class="status-indicator status-online"></span>娱乐社交</h3>
-                    <p>视频通话、在线学习、益智游戏等丰富功能，让老人享受数字化生活的乐趣</p>
+        <!-- 英雄区域 -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>智慧养老服务平台</h1>
+                    <p>让科技温暖晚年生活，为老年人提供全方位的智能化养老服务</p>
+                    <a href="#services" class="cta-button">了解更多服务</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 智能设备 -->
-    <section class="devices" id="devices">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>智能设备</h2>
-                <p>先进的物联网设备，为老人提供全方位智能照护</p>
-            </div>
-            <div class="devices-grid">
-                <div class="device-card fade-in" onclick="openSmartWatch()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <div class="device-image">⌚</div>
-                    <div class="device-content">
-                        <h3><span class="status-indicator status-online"></span>智能手表</h3>
-                        <p>实时监测心率、血压、运动数据，GPS定位防走失，一键紧急呼叫</p>
-                    </div>
+        <!-- 服务特色 -->
+        <section class="features" id="services">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>我们的服务特色</h2>
+                    <p>专业的团队，先进的技术，为老年人打造安全、舒适、便捷的生活环境</p>
                 </div>
-                <div class="device-card fade-in" onclick="openSmartLock()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <div class="device-image">🏠</div>
-                    <div class="device-content">
-                        <h3><span class="status-indicator status-online"></span>智能门锁</h3>
-                        <p>指纹、密码、人脸识别多重开锁方式，访客记录，异常开门提醒</p>
-                    </div>
-                </div>
-                <div class="device-card fade-in" onclick="openSmartCamera()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <div class="device-image">📹</div>
-                    <div class="device-content">
-                        <h3><span class="status-indicator status-online"></span>智能摄像头</h3>
-                        <p>360度监控，智能人形识别，双向语音对讲，异常活动报警</p>
-                    </div>
-                </div>
-                <div class="device-card fade-in" onclick="openHealthMonitoring()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <div class="device-image">❤️</div>
-                    <div class="device-content">
+                <div class="features-grid">
+                    <div class="feature-card fade-in" onclick="openHealthMonitoring()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <span class="feature-icon">🏥</span>
                         <h3><span class="status-indicator status-online"></span>健康监测</h3>
-                        <p>实时监测血压、心率、血氧、体温等健康指标，异常预警，数据分析</p>
+                        <p>24小时实时监测老人健康状况，包括血压、心率、体温等关键指标，及时发现异常并通知家属和医护人员</p>
                     </div>
-                </div>
-                <div class="device-card fade-in" onclick="openSmartMedicineBox()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <div class="device-image">💊</div>
-                    <div class="device-content">
-                        <h3><span class="status-indicator status-online"></span>智能药盒</h3>
-                        <p>定时提醒服药，药物库存管理，用药记录，语音提醒功能</p>
+                    <div class="feature-card fade-in" onclick="openSmartCall()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <span class="feature-icon">📱</span>
+                        <h3><span class="status-indicator status-online"></span>智能呼叫</h3>
+                        <p>一键呼叫功能，老人遇到紧急情况可立即联系家人、邻居或医护人员，获得及时帮助</p>
                     </div>
-                </div>
-                <div class="device-card fade-in" onclick="openSmartBed()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <div class="device-image">🛏️</div>
-                    <div class="device-content">
-                        <h3><span class="status-indicator status-online"></span>智能床垫</h3>
-                        <p>睡眠监测，睡眠质量分析，离床检测，压疮预防提醒</p>
+                    <div class="feature-card fade-in" onclick="openHomeSecurity()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <span class="feature-icon">🏠</span>
+                        <h3><span class="status-indicator status-online"></span>居家安防</h3>
+                        <p>智能门锁、烟雾报警器、燃气泄漏检测等全方位安防系统，保障老人居家安全</p>
                     </div>
-                </div>
-                <div class="device-card fade-in" onclick="openEmergencyButton()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <div class="device-image">🔔</div>
-                    <div class="device-content">
-                        <h3><span class="status-indicator status-online"></span>紧急按钮</h3>
-                        <p>随身携带紧急按钮，摔倒检测，自动呼叫，位置信息上报</p>
+                    <div class="feature-card fade-in" onclick="openLifeServices()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <span class="feature-icon">🍽️</span>
+                        <h3><span class="status-indicator status-online"></span>生活服务</h3>
+                        <p>在线订餐、购物配送、家政清洁等服务，让老人足不出户享受便民生活</p>
+                    </div>
+                    <div class="feature-card fade-in" onclick="openMedicalCare()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <span class="feature-icon">👨‍⚕️</span>
+                        <h3><span class="status-indicator status-online"></span>医疗陪护</h3>
+                        <p>专业护理人员上门服务，包括日常护理、康复训练、健康咨询等专业医疗服务</p>
+                    </div>
+                    <div class="feature-card fade-in" onclick="openEntertainmentSocial()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <span class="feature-icon">🎮</span>
+                        <h3><span class="status-indicator status-online"></span>娱乐社交</h3>
+                        <p>视频通话、在线学习、益智游戏等丰富功能，让老人享受数字化生活的乐趣</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 紧急救援 -->
-    <section class="emergency" id="emergency">
-        <div class="container">
-            <div class="emergency-content">
-                <h2>24小时紧急救援</h2>
-                <p>专业救援团队24小时待命，确保老人安全无忧</p>
-                <button class="emergency-button" onclick="triggerEmergency()">
-                    <span class="loading" style="display: none;" id="emergency-loading"></span>
-                    <span id="emergency-text">立即求助</span>
-                </button>
+        <!-- 智能设备 -->
+        <section class="devices" id="devices">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>智能设备</h2>
+                    <p>先进的物联网设备，为老人提供全方位智能照护</p>
+                </div>
+                <div class="devices-grid">
+                    <div class="device-card fade-in" onclick="openSmartWatch()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div class="device-image">⌚</div>
+                        <div class="device-content">
+                            <h3><span class="status-indicator status-online"></span>智能手表</h3>
+                            <p>实时监测心率、血压、运动数据，GPS定位防走失，一键紧急呼叫</p>
+                        </div>
+                    </div>
+                    <div class="device-card fade-in" onclick="openSmartLock()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div class="device-image">🏠</div>
+                        <div class="device-content">
+                            <h3><span class="status-indicator status-online"></span>智能门锁</h3>
+                            <p>指纹、密码、人脸识别多重开锁方式，访客记录，异常开门提醒</p>
+                        </div>
+                    </div>
+                    <div class="device-card fade-in" onclick="openSmartCamera()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div class="device-image">📹</div>
+                        <div class="device-content">
+                            <h3><span class="status-indicator status-online"></span>智能摄像头</h3>
+                            <p>360度监控，智能人形识别，双向语音对讲，异常活动报警</p>
+                        </div>
+                    </div>
+                    <div class="device-card fade-in" onclick="openHealthMonitoring()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div class="device-image">❤️</div>
+                        <div class="device-content">
+                            <h3><span class="status-indicator status-online"></span>健康监测</h3>
+                            <p>实时监测血压、心率、血氧、体温等健康指标，异常预警，数据分析</p>
+                        </div>
+                    </div>
+                    <div class="device-card fade-in" onclick="openSmartMedicineBox()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div class="device-image">💊</div>
+                        <div class="device-content">
+                            <h3><span class="status-indicator status-online"></span>智能药盒</h3>
+                            <p>定时提醒服药，药物库存管理，用药记录，语音提醒功能</p>
+                        </div>
+                    </div>
+                    <div class="device-card fade-in" onclick="openSmartBed()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div class="device-image">🛏️</div>
+                        <div class="device-content">
+                            <h3><span class="status-indicator status-online"></span>智能床垫</h3>
+                            <p>睡眠监测，睡眠质量分析，离床检测，压疮预防提醒</p>
+                        </div>
+                    </div>
+                    <div class="device-card fade-in" onclick="openEmergencyButton()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <div class="device-image">🔔</div>
+                        <div class="device-content">
+                            <h3><span class="status-indicator status-online"></span>紧急按钮</h3>
+                            <p>随身携带紧急按钮，摔倒检测，自动呼叫，位置信息上报</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 数据统计 -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item fade-in">
-                    <span class="stat-number" data-target="50000">0</span>
-                    <div class="stat-label">服务老人数量</div>
-                </div>
-                <div class="stat-item fade-in">
-                    <span class="stat-number" data-target="99">0</span>
-                    <div class="stat-label">紧急响应率(%)</div>
-                </div>
-                <div class="stat-item fade-in">
-                    <span class="stat-number" data-target="24">0</span>
-                    <div class="stat-label">小时在线服务</div>
-                </div>
-                <div class="stat-item fade-in">
-                    <span class="stat-number" data-target="500">0</span>
-                    <div class="stat-label">专业服务团队</div>
+        <!-- 紧急救援 -->
+        <section class="emergency" id="emergency">
+            <div class="container">
+                <div class="emergency-content">
+                    <h2>24小时紧急救援</h2>
+                    <p>专业救援团队24小时待命，确保老人安全无忧</p>
+                    <button class="emergency-button" onclick="triggerEmergency()">
+                        <span class="loading" style="display: none;" id="emergency-loading"></span>
+                        <span id="emergency-text">立即求助</span>
+                    </button>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 页脚 -->
-    <footer class="footer" id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>联系我们</h3>
-                    <p>服务热线：400-888-9999</p>
-                    <p>客服邮箱：service@smartcare.com</p>
-                    <p>服务时间：24小时全天候</p>
+        <!-- 个人信息/健康档案中心 -->
+        <section class="profile" id="profile" style="padding: 80px 0; background: white;">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>个人信息/健康档案中心</h2>
+                    <p>全面管理个人健康信息，提供便捷的健康档案查询</p>
                 </div>
-                <div class="footer-section">
-                    <h3>快速链接</h3>
-                    <a href="#services">服务介绍</a>
-                    <a href="#devices">智能设备</a>
-                    <a href="#emergency">紧急救援</a>
-                    <a href="#">下载APP</a>
-                </div>
-                <div class="footer-section">
-                    <h3>关于我们</h3>
-                    <a href="#">公司介绍</a>
-                    <a href="#">团队介绍</a>
-                    <a href="#">合作伙伴</a>
-                    <a href="#">招聘信息</a>
-                </div>
-                <div class="footer-section">
-                    <h3>关注我们</h3>
-                    <a href="#">微信公众号</a>
-                    <a href="#">官方微博</a>
-                    <a href="#">抖音账号</a>
-                    <a href="#">QQ群组</a>
+                <div class="profile-content" style="background: #f7fafc; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);">
+                    <div class="profile-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                        <div class="profile-section">
+                            <h3 style="font-size: 1.3rem; color: #2d3748; margin-bottom: 20px; border-bottom: 2px solid #667eea; padding-bottom: 10px;">基本信息</h3>
+                            <div style="space-y: 15px;">
+                                <p><strong>姓名：</strong>张爷爷</p>
+                                <p><strong>年龄：</strong>78岁</p>
+                                <p><strong>住址：</strong>北京市朝阳区阳光小区3号楼2单元501</p>
+                                <p><strong>紧急联系人：</strong>张先生（儿子） 138****5678</p>
+                            </div>
+                        </div>
+                        <div class="profile-section">
+                            <h3 style="font-size: 1.3rem; color: #2d3748; margin-bottom: 20px; border-bottom: 2px solid #667eea; padding-bottom: 10px;">健康信息</h3>
+                            <div style="space-y: 15px;">
+                                <p><strong>慢性病情况：</strong>高血压、糖尿病</p>
+                                <p><strong>过敏药物：</strong>青霉素</p>
+                                <p><strong>最近体检：</strong>2024年3月15日</p>
+                                <p><strong>当前用药：</strong>降压药、降糖药</p>
+                            </div>
+                        </div>
+                        <div class="profile-section" style="grid-column: 1 / -1;">
+                            <h3 style="font-size: 1.3rem; color: #2d3748; margin-bottom: 20px; border-bottom: 2px solid #667eea; padding-bottom: 10px;">服务记录</h3>
+                            <div style="overflow-x: auto;">
+                                <table style="width: 100%; border-collapse: collapse;">
+                                    <thead>
+                                        <tr style="background: #667eea; color: white;">
+                                            <th style="padding: 12px; text-align: left;">日期</th>
+                                            <th style="padding: 12px; text-align: left;">服务类型</th>
+                                            <th style="padding: 12px; text-align: left;">服务人员</th>
+                                            <th style="padding: 12px; text-align: left;">状态</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                                            <td style="padding: 12px;">2024-03-10</td>
+                                            <td style="padding: 12px;">医疗护理</td>
+                                            <td style="padding: 12px;">李护士</td>
+                                            <td style="padding: 12px;">已完成</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                                            <td style="padding: 12px;">2024-03-08</td>
+                                            <td style="padding: 12px;">家政服务</td>
+                                            <td style="padding: 12px;">王阿姨</td>
+                                            <td style="padding: 12px;">已完成</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                                            <td style="padding: 12px;">2024-03-05</td>
+                                            <td style="padding: 12px;">健康监测</td>
+                                            <td style="padding: 12px;">系统自动</td>
+                                            <td style="padding: 12px;">已完成</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 智慧养老服务平台. 保留所有权利. | 隐私政策 | 服务条款</p>
+        </section>
+
+        <!-- 家属端远程查看 -->
+        <section class="family-view" id="familyView" style="padding: 80px 0; background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>家属端远程查看</h2>
+                    <p>实时了解老人状态，随时关怀家人健康</p>
+                </div>
+                <div class="family-content" style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);">
+                    <div class="family-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                        <div class="family-card" style="background: #f7fafc; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                            <h3 style="font-size: 1.2rem; color: #2d3748; margin-bottom: 15px;">实时状态</h3>
+                            <div style="text-align: center; padding: 20px;">
+                                <div style="font-size: 4rem; margin-bottom: 10px;">😊</div>
+                                <p style="color: #48bb78; font-weight: bold;">状态良好</p>
+                                <p style="color: #718096; margin-top: 10px;">最后更新：10分钟前</p>
+                            </div>
+                        </div>
+                        <div class="family-card" style="background: #f7fafc; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                            <h3 style="font-size: 1.2rem; color: #2d3748; margin-bottom: 15px;">今日数据</h3>
+                            <div style="space-y: 10px;">
+                                <p><strong>步数：</strong>2,450步</p>
+                                <p><strong>心率：</strong>75次/分</p>
+                                <p><strong>睡眠：</strong>7小时30分钟</p>
+                                <p><strong>活动时间：</strong>2小时15分钟</p>
+                            </div>
+                        </div>
+                        <div class="family-card" style="background: #f7fafc; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                            <h3 style="font-size: 1.2rem; color: #2d3748; margin-bottom: 15px;">求助记录</h3>
+                            <div style="space-y: 10px;">
+                                <p><strong>2024-03-08：</strong>测试呼叫（已处理）</p>
+                                <p><strong>2024-02-25：</strong>头晕不适（已处理）</p>
+                            </div>
+                        </div>
+                        <div class="family-card" style="background: #f7fafc; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                            <h3 style="font-size: 1.2rem; color: #2d3748; margin-bottom: 15px;">服务预约</h3>
+                            <div style="space-y: 10px;">
+                                <p><strong>2024-03-16：</strong>医疗护理（待处理）</p>
+                                <p><strong>2024-03-20：</strong>家政服务（已预约）</p>
+                            </div>
+                        </div>
+                        <div class="family-card" style="grid-column: 1 / -1; text-align: center; padding: 30px;">
+                            <button onclick="startVideoCall()" style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 15px 40px; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
+                                一键视频通话
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </footer>
+        </section>
+
+        <!-- 服务预约记录与进度跟踪 -->
+        <section class="appointments" id="appointments" style="padding: 80px 0; background: white;">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>服务预约记录与进度跟踪</h2>
+                    <p>随时查看服务状态，掌握服务进度</p>
+                </div>
+                <div class="appointment-tabs" style="display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap;">
+                    <button class="tab-button active" onclick="switchTab('all', event)" style="padding: 10px 20px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; transition: all 0.3s ease;">全部</button>
+                    <button class="tab-button" onclick="switchTab('pending', event)" style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 25px; background: white; color: #4a5568; cursor: pointer; transition: all 0.3s ease;">已预约</button>
+                    <button class="tab-button" onclick="switchTab('processing', event)" style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 25px; background: white; color: #4a5568; cursor: pointer; transition: all 0.3s ease;">处理中</button>
+                    <button class="tab-button" onclick="switchTab('completed', event)" style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 25px; background: white; color: #4a5568; cursor: pointer; transition: all 0.3s ease;">已完成</button>
+                    <button class="tab-button" onclick="switchTab('evaluated', event)" style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 25px; background: white; color: #4a5568; cursor: pointer; transition: all 0.3s ease;">已评价</button>
+                </div>
+                <div class="appointment-list" style="background: #f7fafc; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);">
+                    <div class="appointment-item" style="background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h4 style="font-size: 1.1rem; color: #2d3748;">医疗护理服务</h4>
+                            <span style="padding: 5px 15px; border-radius: 20px; background: #e2e8f0; color: #4a5568; font-size: 0.9rem;">已预约</span>
+                        </div>
+                        <div style="space-y: 10px; margin-bottom: 15px;">
+                            <p><strong>预约时间：</strong>2024-03-16 10:00</p>
+                            <p><strong>服务人员：</strong>李护士</p>
+                            <p><strong>服务内容：</strong>血压监测、药物指导</p>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button style="padding: 8px 16px; border: 1px solid #667eea; border-radius: 20px; background: white; color: #667eea; cursor: pointer; transition: all 0.3s ease;">取消预约</button>
+                            <button style="padding: 8px 16px; border: none; border-radius: 20px; background: #667eea; color: white; cursor: pointer; transition: all 0.3s ease;">查看详情</button>
+                        </div>
+                    </div>
+                    <div class="appointment-item" style="background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h4 style="font-size: 1.1rem; color: #2d3748;">家政服务</h4>
+                            <span style="padding: 5px 15px; border-radius: 20px; background: #e2e8f0; color: #4a5568; font-size: 0.9rem;">处理中</span>
+                        </div>
+                        <div style="space-y: 10px; margin-bottom: 15px;">
+                            <p><strong>预约时间：</strong>2024-03-15 14:00</p>
+                            <p><strong>服务人员：</strong>王阿姨</p>
+                            <p><strong>服务内容：</strong>家居清洁、整理</p>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button style="padding: 8px 16px; border: none; border-radius: 20px; background: #667eea; color: white; cursor: pointer; transition: all 0.3s ease;">联系服务人员</button>
+                        </div>
+                    </div>
+                    <div class="appointment-item" style="background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <h4 style="font-size: 1.1rem; color: #2d3748;">健康监测</h4>
+                            <span style="padding: 5px 15px; border-radius: 20px; background: #48bb78; color: white; font-size: 0.9rem;">已完成</span>
+                        </div>
+                        <div style="space-y: 10px; margin-bottom: 15px;">
+                            <p><strong>服务时间：</strong>2024-03-14 09:00</p>
+                            <p><strong>服务人员：</strong>系统自动</p>
+                            <p><strong>服务内容：</strong>血压、心率、血氧监测</p>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button style="padding: 8px 16px; border: none; border-radius: 20px; background: #667eea; color: white; cursor: pointer; transition: all 0.3s ease;">查看报告</button>
+                            <button style="padding: 8px 16px; border: 1px solid #667eea; border-radius: 20px; background: white; color: #667eea; cursor: pointer; transition: all 0.3s ease;">评价服务</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 消息通知中心 -->
+        <section class="notifications" id="notifications" style="padding: 80px 0; background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);">
+            <div class="container">
+                <div class="section-title fade-in">
+                    <h2>消息通知中心</h2>
+                    <p>及时了解各类提醒和通知</p>
+                </div>
+                <div class="notification-content" style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);">
+                    <div class="notification-list">
+                        <div class="notification-item" style="background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); border-left: 4px solid #667eea;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                                <h4 style="font-size: 1.1rem; color: #2d3748;">服药提醒</h4>
+                                <span style="font-size: 0.9rem; color: #718096;">10分钟前</span>
+                            </div>
+                            <p style="color: #4a5568;">请服用降压药，剂量：1片，温水送服</p>
+                        </div>
+                        <div class="notification-item" style="background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); border-left: 4px solid #e53e3e;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                                <h4 style="font-size: 1.1rem; color: #2d3748;">异常报警提醒</h4>
+                                <span style="font-size: 0.9rem; color: #718096;">2小时前</span>
+                            </div>
+                            <p style="color: #4a5568;">心率异常：检测到心率为95次/分，请注意观察</p>
+                        </div>
+                        <div class="notification-item" style="background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); border-left: 4px solid #48bb78;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                                <h4 style="font-size: 1.1rem; color: #2d3748;">服务预约提醒</h4>
+                                <span style="font-size: 0.9rem; color: #718096;">昨天</span>
+                            </div>
+                            <p style="color: #4a5568;">您预约的医疗护理服务将在明天10:00开始，请做好准备</p>
+                        </div>
+                        <div class="notification-item" style="background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); border-left: 4px solid #ed8936;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                                <h4 style="font-size: 1.1rem; color: #2d3748;">社区活动提醒</h4>
+                                <span style="font-size: 0.9rem; color: #718096;">2天前</span>
+                            </div>
+                            <p style="color: #4a5568;">本周六上午9:00，社区将举办老年人健康讲座，欢迎参加</p>
+                        </div>
+                        <div class="notification-item" style="background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); border-left: 4px solid #9f7aea;">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                                <h4 style="font-size: 1.1rem; color: #2d3748;">家属留言提醒</h4>
+                                <span style="font-size: 0.9rem; color: #718096;">3天前</span>
+                            </div>
+                            <p style="color: #4a5568;">儿子：周末我会来看您，提前祝您身体健康</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 数据统计 -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item fade-in">
+                        <span class="stat-number" data-target="50000">0</span>
+                        <div class="stat-label">服务老人数量</div>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <span class="stat-number" data-target="99">0</span>
+                        <div class="stat-label">紧急响应率(%)</div>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <span class="stat-number" data-target="24">0</span>
+                        <div class="stat-label">小时在线服务</div>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <span class="stat-number" data-target="500">0</span>
+                        <div class="stat-label">专业服务团队</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="footer" id="contact">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>联系我们</h3>
+                        <p>服务热线：400-888-9999</p>
+                        <p>客服邮箱：service@smartcare.com</p>
+                        <p>服务时间：24小时全天候</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>快速链接</h3>
+                        <a href="#services">服务介绍</a>
+                        <a href="#devices">智能设备</a>
+                        <a href="#emergency">紧急救援</a>
+                        <a href="#">下载APP</a>
+                    </div>
+                    <div class="footer-section">
+                        <h3>关于我们</h3>
+                        <a href="#">公司介绍</a>
+                        <a href="#">团队介绍</a>
+                        <a href="#">合作伙伴</a>
+                        <a href="#">招聘信息</a>
+                    </div>
+                    <div class="footer-section">
+                        <h3>关注我们</h3>
+                        <a href="#">微信公众号</a>
+                        <a href="#">官方微博</a>
+                        <a href="#">抖音账号</a>
+                        <a href="#">QQ群组</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 智慧养老服务平台. 保留所有权利. | 隐私政策 | 服务条款</p>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <script>
+        // 角色选择功能
+        function selectRole(role) {
+            // 隐藏角色选择页面
+            document.getElementById('roleSelection').style.display = 'none';
+            // 显示主平台内容
+            document.getElementById('mainContent').style.display = 'block';
+            // 移除body的role-selection类，恢复正常布局
+            document.body.classList.remove('role-selection');
+            
+            // 根据角色显示不同内容
+            if (role === 'family') {
+                // 家属角色默认显示远程查看页面
+                document.getElementById('familyView').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+            
+            // 显示欢迎信息
+            alert(`欢迎，${getRoleName(role)}用户！`);
+        }
+
+        // 获取角色名称
+        function getRoleName(role) {
+            const roleNames = {
+                'elderly': '老人',
+                'family': '家属',
+                'community': '社区工作人员',
+                'medical': '医护人员'
+            };
+            return roleNames[role] || '用户';
+        }
+
+        // 退出登录
+        function logout() {
+            if (confirm('确定要退出登录吗？')) {
+                // 显示角色选择页面
+                document.getElementById('mainContent').style.display = 'none';
+                document.getElementById('roleSelection').style.display = 'block';
+                // 添加body的role-selection类，恢复居中布局
+                document.body.classList.add('role-selection');
+            }
+        }
+
+        // 开始视频通话
+        function startVideoCall() {
+            alert('视频通话功能已启动，正在连接...');
+            // 模拟视频通话连接
+            setTimeout(() => {
+                alert('视频通话已接通！');
+            }, 1500);
+        }
+
+        // 切换预约标签
+        function switchTab(tab, event) {
+            // 移除所有标签的活动状态
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+                button.style.background = 'white';
+                button.style.color = '#4a5568';
+                button.style.border = '1px solid #e2e8f0';
+            });
+            
+            // 设置当前标签为活动状态
+            if (event && event.target) {
+                event.target.classList.add('active');
+                event.target.style.background = '#667eea';
+                event.target.style.color = 'white';
+                event.target.style.border = 'none';
+            }
+            
+            // 这里可以添加根据标签筛选预约的逻辑
+            console.log('切换到标签：', tab);
+        }
+
         // 滚动动画
         function animateOnScroll() {
             const elements = document.querySelectorAll('.fade-in');
