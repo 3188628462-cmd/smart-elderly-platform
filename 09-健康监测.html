@@ -621,6 +621,28 @@
             <div class="header-subtitle">专业医疗设备 • 智能预警系统 • 实时数据监控</div>
         </div>
 
+        <!-- 老人基础健康信息 -->
+        <div class="card">
+            <h2><span class="card-icon">👤</span>老人基础健康信息</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <div style="background: rgba(102, 126, 234, 0.05); padding: 15px; border-radius: 10px;">
+                    <strong>姓名：</strong>张爷爷
+                </div>
+                <div style="background: rgba(102, 126, 234, 0.05); padding: 15px; border-radius: 10px;">
+                    <strong>年龄：</strong>78岁
+                </div>
+                <div style="background: rgba(102, 126, 234, 0.05); padding: 15px; border-radius: 10px;">
+                    <strong>血型：</strong>A型
+                </div>
+                <div style="background: rgba(102, 126, 234, 0.05); padding: 15px; border-radius: 10px;">
+                    <strong>慢性病情况：</strong>高血压、糖尿病
+                </div>
+                <div style="background: rgba(102, 126, 234, 0.05); padding: 15px; border-radius: 10px; grid-column: 1 / -1;">
+                    <strong>紧急联系人：</strong>张先生（儿子） 138****5678
+                </div>
+            </div>
+        </div>
+
         <!-- 快速操作 -->
         <div class="quick-actions">
             <button class="action-btn btn-primary" onclick="startMeasurement()">
@@ -692,18 +714,18 @@
                         <div class="indicator-status" id="temperatureStatus">正常 (36.0-37.3°C)</div>
                     </div>
 
-                    <div class="indicator-card normal" id="bloodSugarCard">
-                        <span class="indicator-icon">🍯</span>
-                        <div class="indicator-name">血糖</div>
-                        <div class="indicator-value" id="bloodSugar">5.2</div>
-                        <div class="indicator-status" id="bloodSugarStatus">正常 (3.9-6.1 mmol/L)</div>
+                    <div class="indicator-card normal" id="stepsCard">
+                        <span class="indicator-icon">🚶</span>
+                        <div class="indicator-name">今日步数</div>
+                        <div class="indicator-value" id="steps">2450</div>
+                        <div class="indicator-status" id="stepsStatus">正常 (目标: 3000步)</div>
                     </div>
 
-                    <div class="indicator-card normal" id="weightCard">
-                        <span class="indicator-icon">⚖️</span>
-                        <div class="indicator-name">体重</div>
-                        <div class="indicator-value" id="bodyWeight">65</div>
-                        <div class="indicator-status" id="weightStatus">正常 (BMI 22.1)</div>
+                    <div class="indicator-card normal" id="sleepCard">
+                        <span class="indicator-icon">😴</span>
+                        <div class="indicator-name">睡眠时长</div>
+                        <div class="indicator-value" id="sleep">7.5</div>
+                        <div class="indicator-status" id="sleepStatus">正常 (7-8小时)</div>
                     </div>
                 </div>
             </div>
@@ -753,10 +775,10 @@
             
             <div class="chart-container">
                 <div class="chart-tabs">
-                    <button class="chart-tab active" onclick="showChart('heartRate')">心率趋势</button>
-                    <button class="chart-tab" onclick="showChart('bloodPressure')">血压趋势</button>
-                    <button class="chart-tab" onclick="showChart('oxygen')">血氧趋势</button>
-                    <button class="chart-tab" onclick="showChart('temperature')">体温趋势</button>
+                    <button class="chart-tab active" onclick="showChart('heartRate', event)">心率趋势</button>
+                    <button class="chart-tab" onclick="showChart('bloodPressure', event)">血压趋势</button>
+                    <button class="chart-tab" onclick="showChart('oxygen', event)">血氧趋势</button>
+                    <button class="chart-tab" onclick="showChart('temperature', event)">体温趋势</button>
                 </div>
                 
                 <div class="chart-display" id="chartDisplay">
@@ -764,6 +786,178 @@
                         <span style="font-size: 3rem;">📊</span><br>
                         <span id="chartTitle">心率趋势图</span><br>
                         <span style="font-size: 0.9rem; color: #888;">过去24小时数据</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 健康记录与服务联动 -->
+        <div class="card">
+            <h2><span class="card-icon">📋</span>健康记录与服务联动</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <!-- 最近体检记录 -->
+                <div style="background: rgba(102, 126, 234, 0.05); padding: 20px; border-radius: 15px;">
+                    <h3 style="margin-bottom: 15px; color: #2d3748;">最近体检记录</h3>
+                    <div style="space-y: 10px;">
+                        <div style="padding: 10px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                            <p><strong>日期：</strong>2024-03-15</p>
+                            <p><strong>项目：</strong>全面体检</p>
+                            <p><strong>结果：</strong>基本正常，血压略高</p>
+                        </div>
+                        <div style="padding: 10px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                            <p><strong>日期：</strong>2024-01-10</p>
+                            <p><strong>项目：</strong>血常规检查</p>
+                            <p><strong>结果：</strong>正常</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 最近问诊/护理记录 -->
+                <div style="background: rgba(102, 126, 234, 0.05); padding: 20px; border-radius: 15px;">
+                    <h3 style="margin-bottom: 15px; color: #2d3748;">最近问诊/护理记录</h3>
+                    <div style="space-y: 10px;">
+                        <div style="padding: 10px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                            <p><strong>日期：</strong>2024-03-10</p>
+                            <p><strong>类型：</strong>医疗护理</p>
+                            <p><strong>人员：</strong>李护士</p>
+                            <p><strong>内容：</strong>血压监测、药物指导</p>
+                        </div>
+                        <div style="padding: 10px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                            <p><strong>日期：</strong>2024-02-25</p>
+                            <p><strong>类型：</strong>远程问诊</p>
+                            <p><strong>人员：</strong>王医生</p>
+                            <p><strong>内容：</strong>头晕症状咨询</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 社区服务建议 -->
+                <div style="background: rgba(102, 126, 234, 0.05); padding: 20px; border-radius: 15px; grid-column: 1 / -1;">
+                    <h3 style="margin-bottom: 15px; color: #2d3748;">社区服务建议</h3>
+                    <div style="padding: 15px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-left: 4px solid #667eea;">
+                        <p><strong>建议服务：</strong>定期健康监测</p>
+                        <p><strong>建议频率：</strong>每周2次</p>
+                        <p><strong>服务内容：</strong>血压监测、用药指导、健康咨询</p>
+                        <button style="margin-top: 15px; padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 20px; cursor: pointer; transition: all 0.3s ease;">预约服务</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 健康数据分析 -->
+        <div class="card">
+            <h2><span class="card-icon">📊</span>健康数据分析</h2>
+            
+            <!-- 健康指标统计卡片 -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                <div style="background: linear-gradient(135deg, #f0fff4 0%, #e8f5e8 100%); padding: 25px; border-radius: 15px; border-left: 4px solid #27ae60; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <h3 style="margin-bottom: 10px; color: #2d3748; font-size: 1.1rem;">平均心率</h3>
+                    <div style="font-size: 2.5rem; font-weight: bold; color: #27ae60; margin-bottom: 10px;">
+                        <span id="avgHeartRate">74</span> <span style="font-size: 1rem; font-weight: normal; color: #666;">BPM</span>
+                    </div>
+                    <div style="font-size: 0.9rem; color: #666;">
+                        <span style="color: #27ae60;">✅</span> 正常范围内
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #f0fff4 0%, #e8f5e8 100%); padding: 25px; border-radius: 15px; border-left: 4px solid #27ae60; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <h3 style="margin-bottom: 10px; color: #2d3748; font-size: 1.1rem;">平均血压</h3>
+                    <div style="font-size: 2.5rem; font-weight: bold; color: #27ae60; margin-bottom: 10px;">
+                        <span id="avgBloodPressure">124/82</span> <span style="font-size: 1rem; font-weight: normal; color: #666;">mmHg</span>
+                    </div>
+                    <div style="font-size: 0.9rem; color: #666;">
+                        <span style="color: #f39c12;">⚠️</span> 略高于正常范围
+                    </div>
+                </div>
+                
+                <div style="background: linear-gradient(135deg, #f0fff4 0%, #e8f5e8 100%); padding: 25px; border-radius: 15px; border-left: 4px solid #27ae60; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <h3 style="margin-bottom: 10px; color: #2d3748; font-size: 1.1rem;">平均睡眠时长</h3>
+                    <div style="font-size: 2.5rem; font-weight: bold; color: #27ae60; margin-bottom: 10px;">
+                        <span id="avgSleep">7.3</span> <span style="font-size: 1rem; font-weight: normal; color: #666;">小时</span>
+                    </div>
+                    <div style="font-size: 0.9rem; color: #666;">
+                        <span style="color: #27ae60;">✅</span> 正常范围内
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 健康趋势图表 -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                <!-- 心率趋势 -->
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+                    <h3 style="margin-bottom: 20px; color: #2d3748; font-size: 1.2rem; display: flex; align-items: center;">
+                        <span style="font-size: 1.5rem; margin-right: 10px;">❤️</span> 心率趋势
+                    </h3>
+                    <div style="height: 250px; position: relative;" id="heartRateChart">
+                        <!-- 内容将通过JavaScript动态生成 -->
+                    </div>
+                    <div style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                        <span style="color: #667eea; font-weight: bold;">最近7天平均: </span>74 BPM
+                    </div>
+                </div>
+                
+                <!-- 血压趋势 -->
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0;">
+                    <h3 style="margin-bottom: 20px; color: #2d3748; font-size: 1.2rem; display: flex; align-items: center;">
+                        <span style="font-size: 1.5rem; margin-right: 10px;">🩸</span> 血压趋势
+                    </h3>
+                    <div style="height: 250px; position: relative;" id="bloodPressureChart">
+                        <!-- 内容将通过JavaScript动态生成 -->
+                    </div>
+                    <div style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                        <span style="color: #667eea; font-weight: bold;">最近7天平均: </span>124/82 mmHg
+                    </div>
+                </div>
+                
+                <!-- 睡眠趋势 -->
+                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; grid-column: 1 / -1;">
+                    <h3 style="margin-bottom: 20px; color: #2d3748; font-size: 1.2rem; display: flex; align-items: center;">
+                        <span style="font-size: 1.5rem; margin-right: 10px;">😴</span> 睡眠趋势
+                    </h3>
+                    <div style="height: 250px; position: relative;" id="sleepChart">
+                        <!-- 内容将通过JavaScript动态生成 -->
+                    </div>
+                    <div style="margin-top: 15px; font-size: 0.9rem; color: #666;">
+                        <span style="color: #667eea; font-weight: bold;">最近7天平均: </span>7.3 小时
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 健康状态分析 -->
+            <div style="background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <h3 style="margin-bottom: 20px; color: #2d3748; font-size: 1.2rem; display: flex; align-items: center;">
+                    <span style="font-size: 1.5rem; margin-right: 10px;">📋</span> 健康状态分析
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-left: 4px solid #27ae60;">
+                        <h4 style="margin-bottom: 10px; color: #2d3748;">总体健康状态</h4>
+                        <p style="color: #666; margin-bottom: 10px;">您的健康状况总体良好，各项指标基本在正常范围内。</p>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 12px; height: 12px; border-radius: 50%; background: #27ae60;"></div>
+                            <span style="color: #27ae60; font-weight: bold;">状态良好</span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-left: 4px solid #f39c12;">
+                        <h4 style="margin-bottom: 10px; color: #2d3748;">需要关注的指标</h4>
+                        <p style="color: #666; margin-bottom: 10px;">血压略高于正常范围，建议注意饮食和休息。</p>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 12px; height: 12px; border-radius: 50%; background: #f39c12;"></div>
+                            <span style="color: #f39c12; font-weight: bold;">需要关注</span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-left: 4px solid #667eea;">
+                        <h4 style="margin-bottom: 10px; color: #2d3748;">健康建议</h4>
+                        <ul style="color: #666; margin-bottom: 10px; padding-left: 20px;">
+                            <li>保持规律作息，保证充足睡眠</li>
+                            <li>适当进行有氧运动，如散步</li>
+                            <li>注意饮食清淡，减少盐分摄入</li>
+                            <li>定期监测血压变化</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -789,8 +983,8 @@
             bloodPressure: { systolic: 120, diastolic: 80 },
             oxygen: 98,
             temperature: 36.5,
-            bloodSugar: 5.2,
-            weight: 65
+            steps: 2450,
+            sleep: 7.5
         };
 
         // 正常范围定义
@@ -799,8 +993,19 @@
             bloodPressure: { systolic: { min: 90, max: 140 }, diastolic: { min: 60, max: 90 }, unit: 'mmHg' },
             oxygen: { min: 95, max: 100, unit: '%' },
             temperature: { min: 36.0, max: 37.3, unit: '°C' },
-            bloodSugar: { min: 3.9, max: 6.1, unit: 'mmol/L' },
-            weight: { min: 50, max: 80, unit: 'kg' }
+            steps: { min: 1000, max: 5000, unit: '步' },
+            sleep: { min: 6, max: 8, unit: '小时' }
+        };
+
+        // 7天健康数据
+        const sevenDayData = {
+            dates: ['3/9', '3/10', '3/11', '3/12', '3/13', '3/14', '3/15'],
+            heartRate: [75, 72, 78, 70, 74, 73, 72],
+            bloodPressure: {
+                systolic: [125, 122, 130, 120, 124, 121, 120],
+                diastolic: [82, 80, 85, 78, 81, 80, 80]
+            },
+            sleep: [7.0, 7.5, 6.5, 8.0, 7.2, 7.8, 7.5]
         };
 
         let alerts = [];
@@ -851,15 +1056,15 @@
                     warning: '偏高 (可能发烧)',
                     danger: '高烧 (立即就医)'
                 },
-                bloodSugar: {
-                    normal: '正常 (3.9-6.1 mmol/L)',
-                    warning: '偏高 (需控制)',
-                    danger: '糖尿病风险 (就医检查)'
+                steps: {
+                    normal: '正常 (目标: 3000步)',
+                    warning: '偏少 (建议增加活动)',
+                    danger: '过少 (需适度运动)'
                 },
-                weight: {
-                    normal: '正常 (BMI适宜)',
-                    warning: '超重 (需控制)',
-                    danger: '肥胖 (建议减重)'
+                sleep: {
+                    normal: '正常 (7-8小时)',
+                    warning: '不足 (建议改善)',
+                    danger: '严重不足 (影响健康)'
                 }
             };
             
@@ -892,18 +1097,17 @@
             document.getElementById('temperatureStatus').textContent = getStatusText('temperature', tempStatus);
             updateCardClass('temperatureCard', tempStatus);
 
-            // 血糖
-            const sugarStatus = checkIndicatorStatus('bloodSugar', healthData.bloodSugar);
-            document.getElementById('bloodSugar').textContent = healthData.bloodSugar;
-            document.getElementById('bloodSugarStatus').textContent = getStatusText('bloodSugar', sugarStatus);
-            updateCardClass('bloodSugarCard', sugarStatus);
+            // 步数
+            const stepsStatus = checkIndicatorStatus('steps', healthData.steps);
+            document.getElementById('steps').textContent = healthData.steps;
+            document.getElementById('stepsStatus').textContent = getStatusText('steps', stepsStatus);
+            updateCardClass('stepsCard', stepsStatus);
 
-            // 体重
-            const weightStatus = checkIndicatorStatus('weight', healthData.weight);
-            const bmi = (healthData.weight / 1.7 / 1.7).toFixed(1); // 假设身高1.7m
-            document.getElementById('bodyWeight').textContent = healthData.weight;
-            document.getElementById('weightStatus').textContent = `正常 (BMI ${bmi})`;
-            updateCardClass('weightCard', weightStatus);
+            // 睡眠
+            const sleepStatus = checkIndicatorStatus('sleep', healthData.sleep);
+            document.getElementById('sleep').textContent = healthData.sleep;
+            document.getElementById('sleepStatus').textContent = getStatusText('sleep', sleepStatus);
+            updateCardClass('sleepCard', sleepStatus);
 
             // 检查是否有预警
             checkAlerts();
@@ -923,7 +1127,8 @@
                 { type: 'bloodPressure', value: healthData.bloodPressure },
                 { type: 'oxygen', value: healthData.oxygen },
                 { type: 'temperature', value: healthData.temperature },
-                { type: 'bloodSugar', value: healthData.bloodSugar }
+                { type: 'steps', value: healthData.steps },
+                { type: 'sleep', value: healthData.sleep }
             ];
 
             statuses.forEach(item => {
@@ -936,6 +1141,24 @@
                         value: item.value
                     });
                 }
+            });
+
+            // 添加长时间无活动提醒
+            if (healthData.steps < 500) {
+                alerts.push({
+                    type: 'activity',
+                    status: 'warning',
+                    time: new Date().toLocaleString(),
+                    value: '长时间无活动'
+                });
+            }
+
+            // 添加未按时服药提醒
+            alerts.push({
+                type: 'medicine',
+                status: 'warning',
+                time: new Date().toLocaleString(),
+                value: '未按时服药'
             });
 
             displayAlerts();
@@ -957,13 +1180,35 @@
             alerts.forEach(alert => {
                 const alertItem = document.createElement('div');
                 alertItem.className = 'alert-item';
-                alertItem.innerHTML = `
-                    <div class="alert-time">${alert.time}</div>
-                    <div class="alert-content">
-                        <strong>${getIndicatorName(alert.type)}</strong> 数值异常 - 
-                        当前值: ${formatValue(alert.type, alert.value)}，建议及时就医检查
-                    </div>
-                `;
+                
+                let content = '';
+                if (alert.type === 'activity') {
+                    content = `
+                        <div class="alert-time">${alert.time}</div>
+                        <div class="alert-content">
+                            <strong>长时间无活动提醒</strong> - 
+                            今日活动量较少，建议适当活动
+                        </div>
+                    `;
+                } else if (alert.type === 'medicine') {
+                    content = `
+                        <div class="alert-time">${alert.time}</div>
+                        <div class="alert-content">
+                            <strong>未按时服药提醒</strong> - 
+                            请记得按时服用降压药和降糖药
+                        </div>
+                    `;
+                } else {
+                    content = `
+                        <div class="alert-time">${alert.time}</div>
+                        <div class="alert-content">
+                            <strong>${getIndicatorName(alert.type)}</strong> 数值异常 - 
+                            当前值: ${formatValue(alert.type, alert.value)}，建议及时就医检查
+                        </div>
+                    `;
+                }
+                
+                alertItem.innerHTML = content;
                 alertContent.appendChild(alertItem);
             });
         }
@@ -975,8 +1220,8 @@
                 bloodPressure: '血压',
                 oxygen: '血氧',
                 temperature: '体温',
-                bloodSugar: '血糖',
-                weight: '体重'
+                steps: '步数',
+                sleep: '睡眠'
             };
             return names[type];
         }
@@ -1001,7 +1246,8 @@
                 healthData.bloodPressure.diastolic += Math.floor(Math.random() * 15) - 7;
                 healthData.oxygen += Math.floor(Math.random() * 4) - 2;
                 healthData.temperature += (Math.random() - 0.5) * 0.4;
-                healthData.bloodSugar += Math.floor(Math.random() * 2) - 1;
+                healthData.steps += Math.floor(Math.random() * 500) - 100;
+                healthData.sleep += (Math.random() - 0.5) * 1;
                 
                 // 确保数据在合理范围内
                 healthData.heartRate = Math.max(50, Math.min(120, healthData.heartRate));
@@ -1009,7 +1255,8 @@
                 healthData.bloodPressure.diastolic = Math.max(50, Math.min(120, healthData.bloodPressure.diastolic));
                 healthData.oxygen = Math.max(90, Math.min(100, healthData.oxygen));
                 healthData.temperature = Math.max(35, Math.min(39, healthData.temperature));
-                healthData.bloodSugar = Math.max(3, Math.min(15, healthData.bloodSugar));
+                healthData.steps = Math.max(0, Math.min(10000, healthData.steps));
+                healthData.sleep = Math.max(0, Math.min(12, healthData.sleep));
                 
                 updateHealthIndicators();
                 addHistoryRecord();
@@ -1048,10 +1295,12 @@
         }
 
         // 显示图表
-        function showChart(type) {
+        function showChart(type, event) {
             const tabs = document.querySelectorAll('.chart-tab');
             tabs.forEach(tab => tab.classList.remove('active'));
-            event.target.classList.add('active');
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
             
             const titles = {
                 heartRate: '心率趋势图',
@@ -1117,11 +1366,404 @@
             document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
         }
 
+        // 计算平均值
+        function calculateAverage(data) {
+            if (Array.isArray(data)) {
+                return (data.reduce((sum, val) => sum + val, 0) / data.length).toFixed(1);
+            }
+            return 0;
+        }
+
+        // 生成健康指标统计数据
+        function updateHealthStats() {
+            // 计算平均值
+            const avgHeartRate = calculateAverage(sevenDayData.heartRate);
+            const avgSystolic = calculateAverage(sevenDayData.bloodPressure.systolic);
+            const avgDiastolic = calculateAverage(sevenDayData.bloodPressure.diastolic);
+            const avgSleep = calculateAverage(sevenDayData.sleep);
+            
+            // 更新统计卡片
+            document.getElementById('avgHeartRate').textContent = avgHeartRate;
+            document.getElementById('avgBloodPressure').textContent = `${Math.round(avgSystolic)}/${Math.round(avgDiastolic)}`;
+            document.getElementById('avgSleep').textContent = avgSleep;
+        }
+
+        // 生成心率趋势图表
+        function generateHeartRateChart() {
+            const chartContainer = document.getElementById('heartRateChart');
+            chartContainer.innerHTML = '';
+            
+            // 计算图表尺寸
+            const width = chartContainer.clientWidth;
+            const height = 200;
+            const padding = 40;
+            const chartWidth = width - padding * 2;
+            const chartHeight = height - padding * 2;
+            
+            // 创建SVG元素
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', width);
+            svg.setAttribute('height', height);
+            chartContainer.appendChild(svg);
+            
+            // 计算数据范围
+            const maxHeartRate = Math.max(...sevenDayData.heartRate) + 10;
+            const minHeartRate = Math.min(...sevenDayData.heartRate) - 10;
+            const range = maxHeartRate - minHeartRate;
+            
+            // 绘制网格线
+            for (let i = 0; i <= 5; i++) {
+                const y = padding + (chartHeight / 5) * i;
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', padding);
+                line.setAttribute('y1', y);
+                line.setAttribute('x2', width - padding);
+                line.setAttribute('y2', y);
+                line.setAttribute('stroke', '#e2e8f0');
+                line.setAttribute('stroke-width', '1');
+                svg.appendChild(line);
+                
+                // 添加Y轴标签
+                if (i < 5) {
+                    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    text.setAttribute('x', padding - 10);
+                    text.setAttribute('y', y + 4);
+                    text.setAttribute('text-anchor', 'end');
+                    text.setAttribute('font-size', '10px');
+                    text.setAttribute('fill', '#666');
+                    text.textContent = Math.round(maxHeartRate - (range / 5) * i);
+                    svg.appendChild(text);
+                }
+            }
+            
+            // 绘制数据线
+            let pathData = '';
+            sevenDayData.heartRate.forEach((value, index) => {
+                const x = padding + (chartWidth / (sevenDayData.heartRate.length - 1)) * index;
+                const y = padding + chartHeight - ((value - minHeartRate) / range) * chartHeight;
+                
+                if (index === 0) {
+                    pathData += `M ${x} ${y}`;
+                } else {
+                    pathData += ` L ${x} ${y}`;
+                }
+                
+                // 绘制数据点
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', x);
+                circle.setAttribute('cy', y);
+                circle.setAttribute('r', '4');
+                circle.setAttribute('fill', '#667eea');
+                circle.setAttribute('stroke', 'white');
+                circle.setAttribute('stroke-width', '2');
+                svg.appendChild(circle);
+                
+                // 添加数据标签
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', x);
+                text.setAttribute('y', y - 10);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('font-size', '10px');
+                text.setAttribute('fill', '#666');
+                text.textContent = value;
+                svg.appendChild(text);
+            });
+            
+            // 绘制路径
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', pathData);
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', '#667eea');
+            path.setAttribute('stroke-width', '2');
+            path.setAttribute('stroke-linecap', 'round');
+            path.setAttribute('stroke-linejoin', 'round');
+            svg.appendChild(path);
+            
+            // 绘制X轴标签
+            sevenDayData.dates.forEach((date, index) => {
+                const x = padding + (chartWidth / (sevenDayData.dates.length - 1)) * index;
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', x);
+                text.setAttribute('y', height - 10);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('font-size', '10px');
+                text.setAttribute('fill', '#666');
+                text.textContent = date;
+                svg.appendChild(text);
+            });
+        }
+
+        // 生成血压趋势图表
+        function generateBloodPressureChart() {
+            const chartContainer = document.getElementById('bloodPressureChart');
+            chartContainer.innerHTML = '';
+            
+            // 计算图表尺寸
+            const width = chartContainer.clientWidth;
+            const height = 200;
+            const padding = 40;
+            const chartWidth = width - padding * 2;
+            const chartHeight = height - padding * 2;
+            
+            // 创建SVG元素
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', width);
+            svg.setAttribute('height', height);
+            chartContainer.appendChild(svg);
+            
+            // 计算数据范围
+            const allBloodPressure = [...sevenDayData.bloodPressure.systolic, ...sevenDayData.bloodPressure.diastolic];
+            const maxBP = Math.max(...allBloodPressure) + 10;
+            const minBP = Math.min(...allBloodPressure) - 10;
+            const range = maxBP - minBP;
+            
+            // 绘制网格线
+            for (let i = 0; i <= 5; i++) {
+                const y = padding + (chartHeight / 5) * i;
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', padding);
+                line.setAttribute('y1', y);
+                line.setAttribute('x2', width - padding);
+                line.setAttribute('y2', y);
+                line.setAttribute('stroke', '#e2e8f0');
+                line.setAttribute('stroke-width', '1');
+                svg.appendChild(line);
+                
+                // 添加Y轴标签
+                if (i < 5) {
+                    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    text.setAttribute('x', padding - 10);
+                    text.setAttribute('y', y + 4);
+                    text.setAttribute('text-anchor', 'end');
+                    text.setAttribute('font-size', '10px');
+                    text.setAttribute('fill', '#666');
+                    text.textContent = Math.round(maxBP - (range / 5) * i);
+                    svg.appendChild(text);
+                }
+            }
+            
+            // 绘制收缩压数据线
+            let systolicPath = '';
+            sevenDayData.bloodPressure.systolic.forEach((value, index) => {
+                const x = padding + (chartWidth / (sevenDayData.bloodPressure.systolic.length - 1)) * index;
+                const y = padding + chartHeight - ((value - minBP) / range) * chartHeight;
+                
+                if (index === 0) {
+                    systolicPath += `M ${x} ${y}`;
+                } else {
+                    systolicPath += ` L ${x} ${y}`;
+                }
+                
+                // 绘制数据点
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', x);
+                circle.setAttribute('cy', y);
+                circle.setAttribute('r', '4');
+                circle.setAttribute('fill', '#e53e3e');
+                circle.setAttribute('stroke', 'white');
+                circle.setAttribute('stroke-width', '2');
+                svg.appendChild(circle);
+            });
+            
+            // 绘制舒张压数据线
+            let diastolicPath = '';
+            sevenDayData.bloodPressure.diastolic.forEach((value, index) => {
+                const x = padding + (chartWidth / (sevenDayData.bloodPressure.diastolic.length - 1)) * index;
+                const y = padding + chartHeight - ((value - minBP) / range) * chartHeight;
+                
+                if (index === 0) {
+                    diastolicPath += `M ${x} ${y}`;
+                } else {
+                    diastolicPath += ` L ${x} ${y}`;
+                }
+                
+                // 绘制数据点
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', x);
+                circle.setAttribute('cy', y);
+                circle.setAttribute('r', '4');
+                circle.setAttribute('fill', '#3182ce');
+                circle.setAttribute('stroke', 'white');
+                circle.setAttribute('stroke-width', '2');
+                svg.appendChild(circle);
+            });
+            
+            // 绘制路径
+            const systolicLine = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            systolicLine.setAttribute('d', systolicPath);
+            systolicLine.setAttribute('fill', 'none');
+            systolicLine.setAttribute('stroke', '#e53e3e');
+            systolicLine.setAttribute('stroke-width', '2');
+            systolicLine.setAttribute('stroke-linecap', 'round');
+            systolicLine.setAttribute('stroke-linejoin', 'round');
+            svg.appendChild(systolicLine);
+            
+            const diastolicLine = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            diastolicLine.setAttribute('d', diastolicPath);
+            diastolicLine.setAttribute('fill', 'none');
+            diastolicLine.setAttribute('stroke', '#3182ce');
+            diastolicLine.setAttribute('stroke-width', '2');
+            diastolicLine.setAttribute('stroke-linecap', 'round');
+            diastolicLine.setAttribute('stroke-linejoin', 'round');
+            svg.appendChild(diastolicLine);
+            
+            // 添加图例
+            const legend = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            legend.setAttribute('transform', `translate(${padding}, ${15})`);
+            
+            const systolicRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            systolicRect.setAttribute('x', '0');
+            systolicRect.setAttribute('y', '0');
+            systolicRect.setAttribute('width', '12');
+            systolicRect.setAttribute('height', '12');
+            systolicRect.setAttribute('fill', '#e53e3e');
+            legend.appendChild(systolicRect);
+            
+            const systolicText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            systolicText.setAttribute('x', '20');
+            systolicText.setAttribute('y', '10');
+            systolicText.setAttribute('font-size', '10px');
+            systolicText.setAttribute('fill', '#666');
+            systolicText.textContent = '收缩压';
+            legend.appendChild(systolicText);
+            
+            const diastolicRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            diastolicRect.setAttribute('x', '80');
+            diastolicRect.setAttribute('y', '0');
+            diastolicRect.setAttribute('width', '12');
+            diastolicRect.setAttribute('height', '12');
+            diastolicRect.setAttribute('fill', '#3182ce');
+            legend.appendChild(diastolicRect);
+            
+            const diastolicText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            diastolicText.setAttribute('x', '100');
+            diastolicText.setAttribute('y', '10');
+            diastolicText.setAttribute('font-size', '10px');
+            diastolicText.setAttribute('fill', '#666');
+            diastolicText.textContent = '舒张压';
+            legend.appendChild(diastolicText);
+            
+            svg.appendChild(legend);
+            
+            // 绘制X轴标签
+            sevenDayData.dates.forEach((date, index) => {
+                const x = padding + (chartWidth / (sevenDayData.dates.length - 1)) * index;
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', x);
+                text.setAttribute('y', height - 10);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('font-size', '10px');
+                text.setAttribute('fill', '#666');
+                text.textContent = date;
+                svg.appendChild(text);
+            });
+        }
+
+        // 生成睡眠趋势图表
+        function generateSleepChart() {
+            const chartContainer = document.getElementById('sleepChart');
+            chartContainer.innerHTML = '';
+            
+            // 计算图表尺寸
+            const width = chartContainer.clientWidth;
+            const height = 200;
+            const padding = 40;
+            const chartWidth = width - padding * 2;
+            const chartHeight = height - padding * 2;
+            
+            // 创建SVG元素
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', width);
+            svg.setAttribute('height', height);
+            chartContainer.appendChild(svg);
+            
+            // 计算数据范围
+            const maxSleep = Math.max(...sevenDayData.sleep) + 1;
+            const minSleep = Math.min(...sevenDayData.sleep) - 1;
+            const range = maxSleep - minSleep;
+            
+            // 绘制网格线
+            for (let i = 0; i <= 5; i++) {
+                const y = padding + (chartHeight / 5) * i;
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', padding);
+                line.setAttribute('y1', y);
+                line.setAttribute('x2', width - padding);
+                line.setAttribute('y2', y);
+                line.setAttribute('stroke', '#e2e8f0');
+                line.setAttribute('stroke-width', '1');
+                svg.appendChild(line);
+                
+                // 添加Y轴标签
+                if (i < 5) {
+                    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    text.setAttribute('x', padding - 10);
+                    text.setAttribute('y', y + 4);
+                    text.setAttribute('text-anchor', 'end');
+                    text.setAttribute('font-size', '10px');
+                    text.setAttribute('fill', '#666');
+                    text.textContent = (maxSleep - (range / 5) * i).toFixed(1);
+                    svg.appendChild(text);
+                }
+            }
+            
+            // 绘制柱状图
+            const barWidth = chartWidth / sevenDayData.sleep.length - 10;
+            sevenDayData.sleep.forEach((value, index) => {
+                const x = padding + (chartWidth / sevenDayData.sleep.length) * index + 5;
+                const barHeight = ((value - minSleep) / range) * chartHeight;
+                const y = padding + chartHeight - barHeight;
+                
+                // 绘制柱子
+                const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                rect.setAttribute('x', x);
+                rect.setAttribute('y', y);
+                rect.setAttribute('width', barWidth);
+                rect.setAttribute('height', barHeight);
+                rect.setAttribute('rx', '4');
+                rect.setAttribute('ry', '4');
+                rect.setAttribute('fill', 'linear-gradient(135deg, #48bb78, #2f855a)');
+                svg.appendChild(rect);
+                
+                // 添加数据标签
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', x + barWidth / 2);
+                text.setAttribute('y', y - 10);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('font-size', '10px');
+                text.setAttribute('fill', '#666');
+                text.textContent = value;
+                svg.appendChild(text);
+            });
+            
+            // 绘制X轴标签
+            sevenDayData.dates.forEach((date, index) => {
+                const x = padding + (chartWidth / sevenDayData.dates.length) * index + (chartWidth / sevenDayData.dates.length) / 2;
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', x);
+                text.setAttribute('y', height - 10);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('font-size', '10px');
+                text.setAttribute('fill', '#666');
+                text.textContent = date;
+                svg.appendChild(text);
+            });
+        }
+
+        // 生成健康趋势图表
+        function generateHealthCharts() {
+            updateHealthStats();
+            generateHeartRateChart();
+            generateBloodPressureChart();
+            generateSleepChart();
+        }
+
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
             updateHealthIndicators();
             addHistoryRecord();
             updateLastUpdate();
+            generateHealthCharts();
             
             // 模拟实时数据更新
             setInterval(() => {
@@ -1132,6 +1774,11 @@
                 updateHealthIndicators();
                 updateLastUpdate();
             }, 10000); // 每10秒更新一次
+        });
+
+        // 窗口大小变化时重新绘制图表
+        window.addEventListener('resize', function() {
+            generateHealthCharts();
         });
     </script>
 </body>
