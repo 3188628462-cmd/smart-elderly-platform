@@ -25,7 +25,6 @@
             padding: 0 20px;
         }
 
-        /* 导航栏 */
         .navbar {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -90,7 +89,6 @@
             width: 100%;
         }
 
-        /* 英雄区域 */
         .hero {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)),
                         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
@@ -165,7 +163,6 @@
             }
         }
 
-        /* 服务特色 */
         .features {
             padding: 80px 0;
             background: white;
@@ -252,7 +249,6 @@
             line-height: 1.6;
         }
 
-        /* 智能设备 */
         .devices {
             padding: 80px 0;
             background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
@@ -316,7 +312,6 @@
             box-shadow: 0 0 10px rgba(72, 187, 120, 0.5);
         }
 
-        /* 紧急救援 */
         .emergency {
             background: linear-gradient(135deg, #e53e3e, #c53030);
             color: white;
@@ -376,7 +371,6 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
-        /* 数据统计 */
         .stats {
             background: #2d3748;
             color: white;
@@ -407,7 +401,6 @@
             opacity: 0.8;
         }
 
-        /* 页脚 */
         .footer {
             background: #1a202c;
             color: white;
@@ -445,7 +438,6 @@
             opacity: 0.7;
         }
 
-        /* 响应式设计 */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -469,7 +461,6 @@
             }
         }
 
-        /* 动画效果 */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
@@ -481,7 +472,6 @@
             transform: translateY(0);
         }
 
-        /* 加载动画 */
         .loading {
             display: inline-block;
             width: 20px;
@@ -498,7 +488,6 @@
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-container">
@@ -514,7 +503,6 @@
         </div>
     </nav>
 
-    <!-- 英雄区域 -->
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
@@ -525,7 +513,6 @@
         </div>
     </section>
 
-    <!-- 服务特色 -->
     <section class="features" id="services">
         <div class="container">
             <div class="section-title fade-in">
@@ -567,7 +554,6 @@
         </div>
     </section>
 
-    <!-- 智能设备 -->
     <section class="devices" id="devices">
         <div class="container">
             <div class="section-title fade-in">
@@ -628,7 +614,6 @@
         </div>
     </section>
 
-    <!-- 紧急救援 -->
     <section class="emergency" id="emergency">
         <div class="container">
             <div class="emergency-content">
@@ -642,7 +627,6 @@
         </div>
     </section>
 
-    <!-- 数据统计 -->
     <section class="stats">
         <div class="container">
             <div class="stats-grid">
@@ -666,7 +650,6 @@
         </div>
     </section>
 
-    <!-- 页脚 -->
     <footer class="footer" id="contact">
         <div class="container">
             <div class="footer-content">
@@ -705,7 +688,6 @@
     </footer>
 
     <script>
-        // 滚动动画
         function animateOnScroll() {
             const elements = document.querySelectorAll('.fade-in');
             
@@ -719,7 +701,6 @@
             });
         }
 
-        // 数字统计动画
         function animateStats() {
             const stats = document.querySelectorAll('.stat-number');
             
@@ -742,7 +723,6 @@
             });
         }
 
-        // 紧急呼叫功能
         function triggerEmergency() {
             const button = document.querySelector('.emergency-button');
             const loading = document.getElementById('emergency-loading');
@@ -752,7 +732,6 @@
             text.textContent = '正在连接...';
             button.disabled = true;
             
-            // 模拟呼叫过程
             setTimeout(() => {
                 alert('紧急呼叫已发出！救援人员正在赶来，请保持冷静。');
                 loading.style.display = 'none';
@@ -761,9 +740,7 @@
             }, 2000);
         }
 
-        // 打开智能药盒功能
         function openSmartMedicineBox() {
-            // 添加点击动画效果
             const medicineBoxCard = document.querySelector('div[onclick="openSmartMedicineBox()"]');
             medicineBoxCard.style.transform = 'scale(0.95)';
             medicineBoxCard.style.transition = 'transform 0.1s ease';
@@ -773,16 +750,12 @@
                 medicineBoxCard.style.transition = 'all 0.3s ease';
             }, 100);
             
-            // 显示跳转提示
             setTimeout(() => {
-                // 在新窗口打开智能药盒管理页面
                 window.open('06-智能药盒管理.html', '_blank');
             }, 200);
         }
 
-        // 打开智能手表功能
         function openSmartWatch() {
-            // 添加点击动画效果
             const smartWatchCard = document.querySelector('div[onclick="openSmartWatch()"]');
             smartWatchCard.style.transform = 'scale(0.95)';
             smartWatchCard.style.transition = 'transform 0.1s ease';
@@ -792,16 +765,12 @@
                 smartWatchCard.style.transition = 'all 0.3s ease';
             }, 100);
             
-            // 显示跳转提示
             setTimeout(() => {
-                // 在新窗口打开智能手表页面
                 window.open('07-智能手表管理.html', '_blank');
             }, 200);
         }
 
-        // 打开生活服务功能
         function openLifeServices() {
-            // 添加点击动画效果
             const lifeServiceCard = document.querySelector('div[onclick="openLifeServices()"]');
             lifeServiceCard.style.transform = 'scale(0.95)';
             lifeServiceCard.style.transition = 'transform 0.1s ease';
@@ -811,16 +780,12 @@
                 lifeServiceCard.style.transition = 'all 0.3s ease';
             }, 100);
             
-            // 显示跳转提示
             setTimeout(() => {
-                // 在新窗口打开生活服务页面
                 window.open('08-生活服务管理.html', '_blank');
             }, 200);
         }
 
-        // 打开健康监测功能
         function openHealthMonitoring() {
-            // 添加点击动画效果
             const healthCard = document.querySelector('div[onclick="openHealthMonitoring()"]');
             healthCard.style.transform = 'scale(0.95)';
             healthCard.style.transition = 'transform 0.1s ease';
@@ -830,16 +795,12 @@
                 healthCard.style.transition = 'all 0.3s ease';
             }, 100);
             
-            // 显示跳转提示
             setTimeout(() => {
-                // 在新窗口打开健康监测页面
                 window.open('09-健康监测.html', '_blank');
             }, 200);
         }
 
-        // 打开娱乐社交功能
         function openEntertainmentSocial() {
-            // 添加点击动画效果
             const entertainmentCard = document.querySelector('div[onclick="openEntertainmentSocial()"]');
             entertainmentCard.style.transform = 'scale(0.95)';
             entertainmentCard.style.transition = 'transform 0.1s ease';
@@ -849,17 +810,13 @@
                 entertainmentCard.style.transition = 'all 0.3s ease';
             }, 100);
             
-            // 显示跳转提示
             setTimeout(() => {
-                // 在新窗口打开娱乐社交页面
                 window.open('10-娱乐社交.html', '_blank');
             }, 200);
         }
 
-        // 打开智能呼叫功能
         function openSmartCall() {
-            // 添加点击动画效果
-            const smartCallCard = document.querySelector('.feature-card:nth-child(2)'); // 智能呼叫卡片
+            const smartCallCard = document.querySelector('.feature-card:nth-child(2)');
             smartCallCard.style.transform = 'scale(0.95)';
             smartCallCard.style.transition = 'transform 0.1s ease';
             
@@ -868,17 +825,13 @@
                 smartCallCard.style.transition = 'all 0.3s ease';
             }, 100);
             
-            // 显示跳转提示
             setTimeout(() => {
-                // 在新窗口打开智能呼叫页面
                 window.open('12-智能呼叫.html', '_blank');
             }, 200);
         }
 
-        // 打开居家安防功能
         function openHomeSecurity() {
-            // 添加点击动画效果
-            const homeSecurityCard = document.querySelector('.feature-card:nth-child(3)'); // 居家安防卡片
+            const homeSecurityCard = document.querySelector('.feature-card:nth-child(3)');
             homeSecurityCard.style.transform = 'scale(0.95)';
             homeSecurityCard.style.transition = 'transform 0.1s ease';
             
@@ -887,17 +840,13 @@
                 homeSecurityCard.style.transition = 'all 0.3s ease';
             }, 100);
             
-            // 显示跳转提示
             setTimeout(() => {
-                // 在新窗口打开居家安防页面
                 window.open('13-居家安防.html', '_blank');
             }, 200);
         }
 
-        // 打开医疗陪护功能
         function openMedicalCare() {
-            // 添加点击动画效果
-            const medicalCareCard = document.querySelector('.feature-card:nth-child(5)'); // 医疗陪护卡片
+            const medicalCareCard = document.querySelector('.feature-card:nth-child(5)');
             medicalCareCard.style.transform = 'scale(0.95)';
             medicalCareCard.style.transition = 'transform 0.1s ease';
             
@@ -906,17 +855,13 @@
                 medicalCareCard.style.transition = 'all 0.3s ease';
             }, 100);
             
-            // 显示跳转提示
             setTimeout(() => {
-                // 在新窗口打开医疗陪护页面
                 window.open('14-医疗陪护.html', '_blank');
             }, 200);
         }
 
-        // 打开智能门锁功能
         function openSmartLock() {
-            // 添加点击动画效果
-            const smartLockCard = document.querySelector('.device-card:nth-child(2)'); // 智能门锁卡片
+            const smartLockCard = document.querySelector('.device-card:nth-child(2)');
             smartLockCard.style.transform = 'scale(0.95)';
             smartLockCard.style.transition = 'transform 0.1s ease';
             
@@ -925,17 +870,13 @@
                 smartLockCard.style.transition = 'all 0.3s ease';
             }, 100);
             
-            // 显示跳转提示
             setTimeout(() => {
-                // 在新窗口打开智能门锁页面
                 window.open('15-智能门锁.html', '_blank');
             }, 200);
         }
 
-        // 打开智能摄像头功能
         function openSmartCamera() {
-            // 添加点击动画效果
-            const smartCameraCard = document.querySelector('.device-card:nth-child(3)'); // 智能摄像头卡片
+            const smartCameraCard = document.querySelector('.device-card:nth-child(3)');
             smartCameraCard.style.transform = 'scale(0.95)';
             smartCameraCard.style.transition = 'transform 0.1s ease';
             
@@ -944,17 +885,13 @@
                 smartCameraCard.style.transition = 'all 0.3s ease';
             }, 100);
             
-            // 显示跳转提示
             setTimeout(() => {
-                // 在新窗口打开智能摄像头页面
                 window.open('16-智能摄像头.html', '_blank');
             }, 200);
         }
 
-        // 打开智能床垫功能
         function openSmartBed() {
-            // 添加点击动画效果
-            const smartBedCard = document.querySelector('.device-card:nth-child(6)'); // 智能床垫卡片
+            const smartBedCard = document.querySelector('.device-card:nth-child(6)');
             smartBedCard.style.transform = 'scale(0.95)';
             smartBedCard.style.transition = 'transform 0.1s ease';
             
@@ -963,17 +900,13 @@
                 smartBedCard.style.transition = 'all 0.3s ease';
             }, 100);
             
-            // 显示跳转提示
             setTimeout(() => {
-                // 在新窗口打开智能床垫页面
                 window.open('17-智能床垫.html', '_blank');
             }, 200);
         }
 
-        // 打开紧急按钮功能
         function openEmergencyButton() {
-            // 添加点击动画效果
-            const emergencyButtonCard = document.querySelector('.device-card:nth-child(7)'); // 紧急按钮卡片
+            const emergencyButtonCard = document.querySelector('.device-card:nth-child(7)');
             emergencyButtonCard.style.transform = 'scale(0.95)';
             emergencyButtonCard.style.transition = 'transform 0.1s ease';
             
@@ -982,14 +915,11 @@
                 emergencyButtonCard.style.transition = 'all 0.3s ease';
             }, 100);
             
-            // 显示跳转提示
             setTimeout(() => {
-                // 在新窗口打开紧急按钮页面
                 window.open('18-紧急按钮.html', '_blank');
             }, 200);
         }
 
-        // 平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1003,18 +933,15 @@
             });
         });
 
-        // 事件监听
         window.addEventListener('scroll', () => {
             animateOnScroll();
         });
 
-        // 页面加载完成后执行
         window.addEventListener('load', () => {
             animateOnScroll();
-            setTimeout(animateStats, 1000); // 延迟1秒执行统计动画
+            setTimeout(animateStats, 1000);
         });
 
-        // 模拟实时数据更新
         setInterval(() => {
             const timeElement = document.querySelector('.stat-number[data-target="24"]');
             if (timeElement) {
@@ -1022,7 +949,7 @@
                 const hours = currentTime.getHours().toString().padStart(2, '0');
                 timeElement.textContent = hours;
             }
-        }, 60000); // 每分钟更新一次
+        }, 60000);
     </script>
 </body>
 </html>
