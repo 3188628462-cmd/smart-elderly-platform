@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -169,7 +170,7 @@
         /* 英雄区域 */
         .hero {
             background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
             color: white;
             padding: 120px 0 80px;
             text-align: center;
@@ -189,8 +190,13 @@
         }
 
         @keyframes float {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-100px); }
+            0% {
+                transform: translateY(0px);
+            }
+
+            100% {
+                transform: translateY(-100px);
+            }
         }
 
         .hero-content {
@@ -235,6 +241,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -414,8 +421,17 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.1; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.2; transform: translate(-50%, -50%) scale(1.05); }
+
+            0%,
+            100% {
+                opacity: 0.1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                opacity: 0.2;
+                transform: translate(-50%, -50%) scale(1.05);
+            }
         }
 
         .emergency-content {
@@ -569,10 +585,13 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
+
 <body class="role-selection">
     <!-- 角色选择页面 -->
     <div id="roleSelection" class="login-container">
@@ -628,8 +647,8 @@
         <section class="hero" id="home">
             <div class="container">
                 <div class="hero-content">
-                    <h1>智慧养老服务平台</h1>
-                    <p id="roleWelcome">让科技温暖晚年生活，为老年人提供全方位的智能化养老服务</p>
+                    <h1>智慧养老服务平台原型系统</h1>
+                    <p id="roleWelcome">多角色协同服务平台 - 面向老人、家属、社区、医护的综合服务原型</p>
                     <div id="roleIndicator" style="background: rgba(255, 255, 255, 0.2); padding: 10px 20px; border-radius: 25px; display: inline-block; margin: 10px 0;">
                         <span style="color: white; font-weight: bold;">当前身份：</span>
                         <span id="currentRole" style="color: white;">请选择身份</span>
@@ -645,42 +664,52 @@
                 <h2 style="text-align: center; margin-bottom: 40px; color: #2d3748;">老人用户中心</h2>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
                     <!-- 一键求助 -->
-                    <div style="background: linear-gradient(135deg, #e53e3e, #c53030); color: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(229, 62, 62, 0.3);">
+                    <div
+                        style="background: linear-gradient(135deg, #e53e3e, #c53030); color: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(229, 62, 62, 0.3);">
                         <div style="font-size: 4rem; margin-bottom: 20px;">🆘</div>
                         <h3 style="font-size: 1.5rem; margin-bottom: 15px;">一键求助</h3>
                         <p style="margin-bottom: 20px; opacity: 0.9;">遇到紧急情况，一键呼叫，立即获得帮助</p>
-                        <button onclick="triggerEmergency()" style="background: white; color: #e53e3e; padding: 12px 30px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">立即求助</button>
+                        <button onclick="triggerEmergency()"
+                            style="background: white; color: #e53e3e; padding: 12px 30px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">立即求助</button>
                     </div>
-                    
+
                     <!-- 健康监测 -->
-                    <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s ease;" onclick="openHealthMonitoring()">
+                    <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3); cursor: pointer; transition: all 0.3s ease;"
+                        onclick="openHealthMonitoring()">
                         <div style="font-size: 4rem; margin-bottom: 20px;">❤️</div>
                         <h3 style="font-size: 1.5rem; margin-bottom: 15px;">健康监测</h3>
                         <p style="margin-bottom: 20px; opacity: 0.9;">实时监测健康状况，关注身体变化</p>
-                        <button style="background: white; color: #667eea; padding: 12px 30px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">查看详情</button>
+                        <button
+                            style="background: white; color: #667eea; padding: 12px 30px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">查看详情</button>
                     </div>
-                    
+
                     <!-- 用药提醒 -->
-                    <div style="background: linear-gradient(135deg, #48bb78, #2f855a); color: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(72, 187, 120, 0.3);">
+                    <div
+                        style="background: linear-gradient(135deg, #48bb78, #2f855a); color: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(72, 187, 120, 0.3);">
                         <div style="font-size: 4rem; margin-bottom: 20px;">💊</div>
                         <h3 style="font-size: 1.5rem; margin-bottom: 15px;">用药提醒</h3>
                         <p style="margin-bottom: 20px; opacity: 0.9;">按时服药，健康生活</p>
-                        <button style="background: white; color: #48bb78; padding: 12px 30px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">查看提醒</button>
+                        <button
+                            style="background: white; color: #48bb78; padding: 12px 30px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;" onclick="openMedicineReminder()">查看提醒</button>
                     </div>
-                    
+
                     <!-- 服务预约 -->
-                    <div style="background: linear-gradient(135deg, #ed8936, #dd6b20); color: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(237, 137, 54, 0.3);">
+                    <div
+                        style="background: linear-gradient(135deg, #ed8936, #dd6b20); color: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(237, 137, 54, 0.3);">
                         <div style="font-size: 4rem; margin-bottom: 20px;">📅</div>
                         <h3 style="font-size: 1.5rem; margin-bottom: 15px;">服务预约</h3>
                         <p style="margin-bottom: 20px; opacity: 0.9;">预约专业服务，享受便捷生活</p>
-                        <button style="background: white; color: #ed8936; padding: 12px 30px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">立即预约</button>
+                        <button
+                            style="background: white; color: #ed8936; padding: 12px 30px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;" onclick="openAppointment()">立即预约</button>
                     </div>
-                    
+
                     <!-- 社区活动 -->
-                    <div style="background: linear-gradient(135deg, #3182ce, #2c5282); color: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(49, 130, 206, 0.3); grid-column: 1 / -1;">
+                    <div
+                        style="background: linear-gradient(135deg, #3182ce, #2c5282); color: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(49, 130, 206, 0.3); grid-column: 1 / -1;">
                         <div style="font-size: 4rem; margin-bottom: 20px;">🎉</div>
                         <h3 style="font-size: 1.5rem; margin-bottom: 15px;">社区活动</h3>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
                             <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 15px;">
                                 <h4 style="margin-bottom: 10px;">老年人书法班</h4>
                                 <p style="opacity: 0.9; font-size: 0.9rem;">时间：每周二下午2:00-4:00</p>
@@ -708,38 +737,45 @@
                 <h2 style="text-align: center; margin-bottom: 40px; color: #2d3748;">家属用户中心</h2>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
                     <!-- 老人实时状态 -->
-                    <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
+                    <div
+                        style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
                         <div style="font-size: 4rem; margin-bottom: 20px;">😊</div>
                         <h3 style="font-size: 1.5rem; margin-bottom: 15px;">老人实时状态</h3>
                         <p style="margin-bottom: 20px; opacity: 0.9;">状态良好，一切正常</p>
                         <p style="font-size: 0.9rem; opacity: 0.8;">最后更新：10分钟前</p>
                     </div>
-                    
+
                     <!-- 今日健康数据 -->
-                    <div style="background: linear-gradient(135deg, #48bb78, #2f855a); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(72, 187, 120, 0.3);">
+                    <div
+                        style="background: linear-gradient(135deg, #48bb78, #2f855a); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(72, 187, 120, 0.3);">
                         <h3 style="font-size: 1.5rem; margin-bottom: 20px; text-align: center;">今日健康数据</h3>
                         <div style="display: flex; flex-direction: column; gap: 15px;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
                                 <span>步数</span>
                                 <span style="font-weight: bold;">2,450步</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
                                 <span>心率</span>
                                 <span style="font-weight: bold;">75次/分</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
                                 <span>睡眠</span>
                                 <span style="font-weight: bold;">7小时30分钟</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
                                 <span>活动时间</span>
                                 <span style="font-weight: bold;">2小时15分钟</span>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 求助记录 -->
-                    <div style="background: linear-gradient(135deg, #e53e3e, #c53030); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(229, 62, 62, 0.3);">
+                    <div
+                        style="background: linear-gradient(135deg, #e53e3e, #c53030); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(229, 62, 62, 0.3);">
                         <h3 style="font-size: 1.5rem; margin-bottom: 20px; text-align: center;">求助记录</h3>
                         <div style="display: flex; flex-direction: column; gap: 15px;">
                             <div style="padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
@@ -752,9 +788,10 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 服务预约进度 -->
-                    <div style="background: linear-gradient(135deg, #ed8936, #dd6b20); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(237, 137, 54, 0.3);">
+                    <div
+                        style="background: linear-gradient(135deg, #ed8936, #dd6b20); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(237, 137, 54, 0.3);">
                         <h3 style="font-size: 1.5rem; margin-bottom: 20px; text-align: center;">服务预约进度</h3>
                         <div style="display: flex; flex-direction: column; gap: 15px;">
                             <div style="padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
@@ -767,13 +804,15 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 一键视频通话 -->
-                    <div style="background: linear-gradient(135deg, #3182ce, #2c5282); color: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(49, 130, 206, 0.3); grid-column: 1 / -1;">
+                    <div
+                        style="background: linear-gradient(135deg, #3182ce, #2c5282); color: white; padding: 30px; border-radius: 20px; text-align: center; box-shadow: 0 10px 30px rgba(49, 130, 206, 0.3); grid-column: 1 / -1;">
                         <div style="font-size: 4rem; margin-bottom: 20px;">📹</div>
                         <h3 style="font-size: 1.5rem; margin-bottom: 15px;">一键视频通话</h3>
                         <p style="margin-bottom: 20px; opacity: 0.9;">随时与老人视频通话，了解近况</p>
-                        <button onclick="startVideoCall()" style="background: white; color: #3182ce; padding: 15px 40px; border: none; border-radius: 25px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">立即通话</button>
+                        <button onclick="startVideoCall()"
+                            style="background: white; color: #3182ce; padding: 15px 40px; border: none; border-radius: 25px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">立即通话</button>
                     </div>
                 </div>
             </div>
@@ -785,30 +824,40 @@
                 <h2 style="text-align: center; margin-bottom: 40px; color: #2d3748;">社区工作人员中心</h2>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
                     <!-- 老人名单 -->
-                    <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
+                    <div
+                        style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
                         <h3 style="font-size: 1.5rem; margin-bottom: 20px; text-align: center;">老人名单</h3>
                         <div style="display: flex; flex-direction: column; gap: 15px;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
                                 <span>张爷爷</span>
-                                <span style="padding: 4px 12px; background: rgba(255, 255, 255, 0.2); border-radius: 15px; font-size: 0.8rem;">78岁</span>
+                                <span
+                                    style="padding: 4px 12px; background: rgba(255, 255, 255, 0.2); border-radius: 15px; font-size: 0.8rem;">78岁</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
                                 <span>李奶奶</span>
-                                <span style="padding: 4px 12px; background: rgba(255, 255, 255, 0.2); border-radius: 15px; font-size: 0.8rem;">82岁</span>
+                                <span
+                                    style="padding: 4px 12px; background: rgba(255, 255, 255, 0.2); border-radius: 15px; font-size: 0.8rem;">82岁</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
                                 <span>王爷爷</span>
-                                <span style="padding: 4px 12px; background: rgba(255, 255, 255, 0.2); border-radius: 15px; font-size: 0.8rem;">75岁</span>
+                                <span
+                                    style="padding: 4px 12px; background: rgba(255, 255, 255, 0.2); border-radius: 15px; font-size: 0.8rem;">75岁</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
                                 <span>赵奶奶</span>
-                                <span style="padding: 4px 12px; background: rgba(255, 255, 255, 0.2); border-radius: 15px; font-size: 0.8rem;">80岁</span>
+                                <span
+                                    style="padding: 4px 12px; background: rgba(255, 255, 255, 0.2); border-radius: 15px; font-size: 0.8rem;">80岁</span>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 待处理服务单 -->
-                    <div style="background: linear-gradient(135deg, #e53e3e, #c53030); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(229, 62, 62, 0.3);">
+                    <div
+                        style="background: linear-gradient(135deg, #e53e3e, #c53030); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(229, 62, 62, 0.3);">
                         <h3 style="font-size: 1.5rem; margin-bottom: 20px; text-align: center;">待处理服务单</h3>
                         <div style="display: flex; flex-direction: column; gap: 15px;">
                             <div style="padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
@@ -821,9 +870,10 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 异常预警列表 -->
-                    <div style="background: linear-gradient(135deg, #ed8936, #dd6b20); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(237, 137, 54, 0.3);">
+                    <div
+                        style="background: linear-gradient(135deg, #ed8936, #dd6b20); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(237, 137, 54, 0.3);">
                         <h3 style="font-size: 1.5rem; margin-bottom: 20px; text-align: center;">异常预警列表</h3>
                         <div style="display: flex; flex-direction: column; gap: 15px;">
                             <div style="padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
@@ -836,9 +886,10 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 今日上门任务 -->
-                    <div style="background: linear-gradient(135deg, #48bb78, #2f855a); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(72, 187, 120, 0.3);">
+                    <div
+                        style="background: linear-gradient(135deg, #48bb78, #2f855a); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(72, 187, 120, 0.3);">
                         <h3 style="font-size: 1.5rem; margin-bottom: 20px; text-align: center;">今日上门任务</h3>
                         <div style="display: flex; flex-direction: column; gap: 15px;">
                             <div style="padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
@@ -851,15 +902,20 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 社区活动发布 -->
-                    <div style="background: linear-gradient(135deg, #3182ce, #2c5282); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(49, 130, 206, 0.3); grid-column: 1 / -1;">
+                    <div
+                        style="background: linear-gradient(135deg, #3182ce, #2c5282); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(49, 130, 206, 0.3); grid-column: 1 / -1;">
                         <h3 style="font-size: 1.5rem; margin-bottom: 20px; text-align: center;">社区活动发布</h3>
                         <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 15px;">
-                            <input type="text" placeholder="活动标题" style="width: 100%; padding: 10px; margin-bottom: 15px; border: none; border-radius: 10px; background: rgba(255, 255, 255, 0.2); color: white;">
-                            <textarea placeholder="活动详情" style="width: 100%; padding: 10px; margin-bottom: 15px; border: none; border-radius: 10px; background: rgba(255, 255, 255, 0.2); color: white; min-height: 100px;"></textarea>
-                            <input type="date" style="width: 100%; padding: 10px; margin-bottom: 15px; border: none; border-radius: 10px; background: rgba(255, 255, 255, 0.2); color: white;">
-                            <button style="background: white; color: #3182ce; padding: 12px 30px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">发布活动</button>
+                            <input type="text" placeholder="活动标题"
+                                style="width: 100%; padding: 10px; margin-bottom: 15px; border: none; border-radius: 10px; background: rgba(255, 255, 255, 0.2); color: white;">
+                            <textarea placeholder="活动详情"
+                                style="width: 100%; padding: 10px; margin-bottom: 15px; border: none; border-radius: 10px; background: rgba(255, 255, 255, 0.2); color: white; min-height: 100px;"></textarea>
+                            <input type="date"
+                                style="width: 100%; padding: 10px; margin-bottom: 15px; border: none; border-radius: 10px; background: rgba(255, 255, 255, 0.2); color: white;">
+                            <button
+                                style="background: white; color: #3182ce; padding: 12px 30px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: all 0.3s ease;">发布活动</button>
                         </div>
                     </div>
                 </div>
@@ -872,7 +928,8 @@
                 <h2 style="text-align: center; margin-bottom: 40px; color: #2d3748;">医护人员中心</h2>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
                     <!-- 重点关注老人 -->
-                    <div style="background: linear-gradient(135deg, #e53e3e, #c53030); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(229, 62, 62, 0.3);">
+                    <div
+                        style="background: linear-gradient(135deg, #e53e3e, #c53030); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(229, 62, 62, 0.3);">
                         <h3 style="font-size: 1.5rem; margin-bottom: 20px; text-align: center;">重点关注老人</h3>
                         <div style="display: flex; flex-direction: column; gap: 15px;">
                             <div style="padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
@@ -885,9 +942,10 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 健康异常提醒 -->
-                    <div style="background: linear-gradient(135deg, #ed8936, #dd6b20); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(237, 137, 54, 0.3);">
+                    <div
+                        style="background: linear-gradient(135deg, #ed8936, #dd6b20); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(237, 137, 54, 0.3);">
                         <h3 style="font-size: 1.5rem; margin-bottom: 20px; text-align: center;">健康异常提醒</h3>
                         <div style="display: flex; flex-direction: column; gap: 15px;">
                             <div style="padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
@@ -900,9 +958,10 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 最近体检/问诊记录 -->
-                    <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
+                    <div
+                        style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
                         <h3 style="font-size: 1.5rem; margin-bottom: 20px; text-align: center;">最近体检/问诊记录</h3>
                         <div style="display: flex; flex-direction: column; gap: 15px;">
                             <div style="padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
@@ -915,9 +974,10 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 护理安排 -->
-                    <div style="background: linear-gradient(135deg, #48bb78, #2f855a); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(72, 187, 120, 0.3);">
+                    <div
+                        style="background: linear-gradient(135deg, #48bb78, #2f855a); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(72, 187, 120, 0.3);">
                         <h3 style="font-size: 1.5rem; margin-bottom: 20px; text-align: center;">护理安排</h3>
                         <div style="display: flex; flex-direction: column; gap: 15px;">
                             <div style="padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px;">
@@ -930,14 +990,17 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- 健康趋势分析 -->
-                    <div style="background: linear-gradient(135deg, #3182ce, #2c5282); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(49, 130, 206, 0.3); grid-column: 1 / -1;">
+                    <div
+                        style="background: linear-gradient(135deg, #3182ce, #2c5282); color: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(49, 130, 206, 0.3); grid-column: 1 / -1;">
                         <h3 style="font-size: 1.5rem; margin-bottom: 20px; text-align: center;">健康趋势分析</h3>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        <div
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                             <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 15px;">
                                 <h4 style="margin-bottom: 15px;">王爷爷 - 血压趋势</h4>
-                                <div style="height: 150px; background: rgba(255, 255, 255, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <div
+                                    style="height: 150px; background: rgba(255, 255, 255, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
                                     <span style="font-size: 3rem;">📊</span>
                                 </div>
                                 <div style="margin-top: 15px; font-size: 0.9rem;">
@@ -946,7 +1009,8 @@
                             </div>
                             <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 15px;">
                                 <h4 style="margin-bottom: 15px;">李奶奶 - 血糖趋势</h4>
-                                <div style="height: 150px; background: rgba(255, 255, 255, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <div
+                                    style="height: 150px; background: rgba(255, 255, 255, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
                                     <span style="font-size: 3rem;">📊</span>
                                 </div>
                                 <div style="margin-top: 15px; font-size: 0.9rem;">
@@ -967,32 +1031,50 @@
                     <p>专业的团队，先进的技术，为老年人打造安全、舒适、便捷的生活环境</p>
                 </div>
                 <div class="features-grid">
-                    <div class="feature-card fade-in" onclick="openHealthMonitoring()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="feature-card fade-in" onclick="openHealthMonitoring()"
+                        style="cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
                         <span class="feature-icon">🏥</span>
                         <h3><span class="status-indicator status-online"></span>健康监测</h3>
                         <p>24小时实时监测老人健康状况，包括血压、心率、体温等关键指标，及时发现异常并通知家属和医护人员</p>
                     </div>
-                    <div class="feature-card fade-in" onclick="openSmartCall()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="feature-card fade-in" onclick="openSmartCall()"
+                        style="cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
                         <span class="feature-icon">📱</span>
                         <h3><span class="status-indicator status-online"></span>智能呼叫</h3>
                         <p>一键呼叫功能，老人遇到紧急情况可立即联系家人、邻居或医护人员，获得及时帮助</p>
                     </div>
-                    <div class="feature-card fade-in" onclick="openHomeSecurity()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="feature-card fade-in" onclick="openHomeSecurity()"
+                        style="cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
                         <span class="feature-icon">🏠</span>
                         <h3><span class="status-indicator status-online"></span>居家安防</h3>
                         <p>智能门锁、烟雾报警器、燃气泄漏检测等全方位安防系统，保障老人居家安全</p>
                     </div>
-                    <div class="feature-card fade-in" onclick="openLifeServices()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="feature-card fade-in" onclick="openLifeServices()"
+                        style="cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
                         <span class="feature-icon">🍽️</span>
                         <h3><span class="status-indicator status-online"></span>生活服务</h3>
                         <p>在线订餐、购物配送、家政清洁等服务，让老人足不出户享受便民生活</p>
                     </div>
-                    <div class="feature-card fade-in" onclick="openMedicalCare()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="feature-card fade-in" onclick="openMedicalCare()"
+                        style="cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
                         <span class="feature-icon">👨‍⚕️</span>
                         <h3><span class="status-indicator status-online"></span>医疗陪护</h3>
                         <p>专业护理人员上门服务，包括日常护理、康复训练、健康咨询等专业医疗服务</p>
                     </div>
-                    <div class="feature-card fade-in" onclick="openEntertainmentSocial()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="feature-card fade-in" onclick="openEntertainmentSocial()"
+                        style="cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
                         <span class="feature-icon">🎮</span>
                         <h3><span class="status-indicator status-online"></span>娱乐社交</h3>
                         <p>视频通话、在线学习、益智游戏等丰富功能，让老人享受数字化生活的乐趣</p>
@@ -1009,49 +1091,70 @@
                     <p>先进的物联网设备，为老人提供全方位智能照护</p>
                 </div>
                 <div class="devices-grid">
-                    <div class="device-card fade-in" onclick="openSmartWatch()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="device-card fade-in" onclick="openSmartWatch()"
+                        style="cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
                         <div class="device-image">⌚</div>
                         <div class="device-content">
                             <h3><span class="status-indicator status-online"></span>智能手表</h3>
                             <p>实时监测心率、血压、运动数据，GPS定位防走失，一键紧急呼叫</p>
                         </div>
                     </div>
-                    <div class="device-card fade-in" onclick="openSmartLock()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="device-card fade-in" onclick="openSmartLock()"
+                        style="cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
                         <div class="device-image">🏠</div>
                         <div class="device-content">
                             <h3><span class="status-indicator status-online"></span>智能门锁</h3>
                             <p>指纹、密码、人脸识别多重开锁方式，访客记录，异常开门提醒</p>
                         </div>
                     </div>
-                    <div class="device-card fade-in" onclick="openSmartCamera()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="device-card fade-in" onclick="openSmartCamera()"
+                        style="cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
                         <div class="device-image">📹</div>
                         <div class="device-content">
                             <h3><span class="status-indicator status-online"></span>智能摄像头</h3>
                             <p>360度监控，智能人形识别，双向语音对讲，异常活动报警</p>
                         </div>
                     </div>
-                    <div class="device-card fade-in" onclick="openHealthMonitoring()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="device-card fade-in" onclick="openHealthMonitoring()"
+                        style="cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
                         <div class="device-image">❤️</div>
                         <div class="device-content">
                             <h3><span class="status-indicator status-online"></span>健康监测</h3>
                             <p>实时监测血压、心率、血氧、体温等健康指标，异常预警，数据分析</p>
                         </div>
                     </div>
-                    <div class="device-card fade-in" onclick="openSmartMedicineBox()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="device-card fade-in" onclick="openSmartMedicineBox()"
+                        style="cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
                         <div class="device-image">💊</div>
                         <div class="device-content">
                             <h3><span class="status-indicator status-online"></span>智能药盒</h3>
                             <p>定时提醒服药，药物库存管理，用药记录，语音提醒功能</p>
                         </div>
                     </div>
-                    <div class="device-card fade-in" onclick="openSmartBed()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="device-card fade-in" onclick="openSmartBed()"
+                        style="cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
                         <div class="device-image">🛏️</div>
                         <div class="device-content">
                             <h3><span class="status-indicator status-online"></span>智能床垫</h3>
                             <p>睡眠监测，睡眠质量分析，离床检测，压疮预防提醒</p>
                         </div>
                     </div>
-                    <div class="device-card fade-in" onclick="openEmergencyButton()" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div class="device-card fade-in" onclick="openEmergencyButton()"
+                        style="cursor: pointer; transition: all 0.3s ease;"
+                        onmouseover="this.style.transform='translateY(-5px)'"
+                        onmouseout="this.style.transform='translateY(0)'">
                         <div class="device-image">🔔</div>
                         <div class="device-content">
                             <h3><span class="status-indicator status-online"></span>紧急按钮</h3>
@@ -1083,10 +1186,13 @@
                     <h2>个人信息/健康档案中心</h2>
                     <p>全面管理个人健康信息，提供便捷的健康档案查询</p>
                 </div>
-                <div class="profile-content" style="background: #f7fafc; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);">
+                <div class="profile-content"
+                    style="background: #f7fafc; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);">
                     <div class="profile-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
                         <div class="profile-section">
-                            <h3 style="font-size: 1.3rem; color: #2d3748; margin-bottom: 20px; border-bottom: 2px solid #667eea; padding-bottom: 10px;">基本信息</h3>
+                            <h3
+                                style="font-size: 1.3rem; color: #2d3748; margin-bottom: 20px; border-bottom: 2px solid #667eea; padding-bottom: 10px;">
+                                基本信息</h3>
                             <div style="space-y: 15px;">
                                 <p><strong>姓名：</strong>张爷爷</p>
                                 <p><strong>年龄：</strong>78岁</p>
@@ -1095,7 +1201,9 @@
                             </div>
                         </div>
                         <div class="profile-section">
-                            <h3 style="font-size: 1.3rem; color: #2d3748; margin-bottom: 20px; border-bottom: 2px solid #667eea; padding-bottom: 10px;">健康信息</h3>
+                            <h3
+                                style="font-size: 1.3rem; color: #2d3748; margin-bottom: 20px; border-bottom: 2px solid #667eea; padding-bottom: 10px;">
+                                健康信息</h3>
                             <div style="space-y: 15px;">
                                 <p><strong>慢性病情况：</strong>高血压、糖尿病</p>
                                 <p><strong>过敏药物：</strong>青霉素</p>
@@ -1104,7 +1212,9 @@
                             </div>
                         </div>
                         <div class="profile-section" style="grid-column: 1 / -1;">
-                            <h3 style="font-size: 1.3rem; color: #2d3748; margin-bottom: 20px; border-bottom: 2px solid #667eea; padding-bottom: 10px;">服务记录</h3>
+                            <h3
+                                style="font-size: 1.3rem; color: #2d3748; margin-bottom: 20px; border-bottom: 2px solid #667eea; padding-bottom: 10px;">
+                                服务记录</h3>
                             <div style="overflow-x: auto;">
                                 <table style="width: 100%; border-collapse: collapse;">
                                     <thead>
@@ -1144,15 +1254,19 @@
         </section>
 
         <!-- 家属端远程查看 -->
-        <section class="family-view" id="familyView" style="padding: 80px 0; background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);">
+        <section class="family-view" id="familyView"
+            style="padding: 80px 0; background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);">
             <div class="container">
                 <div class="section-title fade-in">
                     <h2>家属端远程查看</h2>
                     <p>实时了解老人状态，随时关怀家人健康</p>
                 </div>
-                <div class="family-content" style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);">
-                    <div class="family-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                        <div class="family-card" style="background: #f7fafc; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                <div class="family-content"
+                    style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);">
+                    <div class="family-grid"
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                        <div class="family-card"
+                            style="background: #f7fafc; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
                             <h3 style="font-size: 1.2rem; color: #2d3748; margin-bottom: 15px;">实时状态</h3>
                             <div style="text-align: center; padding: 20px;">
                                 <div style="font-size: 4rem; margin-bottom: 10px;">😊</div>
@@ -1160,7 +1274,8 @@
                                 <p style="color: #718096; margin-top: 10px;">最后更新：10分钟前</p>
                             </div>
                         </div>
-                        <div class="family-card" style="background: #f7fafc; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                        <div class="family-card"
+                            style="background: #f7fafc; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
                             <h3 style="font-size: 1.2rem; color: #2d3748; margin-bottom: 15px;">今日数据</h3>
                             <div style="space-y: 10px;">
                                 <p><strong>步数：</strong>2,450步</p>
@@ -1169,14 +1284,16 @@
                                 <p><strong>活动时间：</strong>2小时15分钟</p>
                             </div>
                         </div>
-                        <div class="family-card" style="background: #f7fafc; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                        <div class="family-card"
+                            style="background: #f7fafc; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
                             <h3 style="font-size: 1.2rem; color: #2d3748; margin-bottom: 15px;">求助记录</h3>
                             <div style="space-y: 10px;">
                                 <p><strong>2024-03-08：</strong>测试呼叫（已处理）</p>
                                 <p><strong>2024-02-25：</strong>头晕不适（已处理）</p>
                             </div>
                         </div>
-                        <div class="family-card" style="background: #f7fafc; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                        <div class="family-card"
+                            style="background: #f7fafc; border-radius: 15px; padding: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
                             <h3 style="font-size: 1.2rem; color: #2d3748; margin-bottom: 15px;">服务预约</h3>
                             <div style="space-y: 10px;">
                                 <p><strong>2024-03-16：</strong>医疗护理（待处理）</p>
@@ -1184,7 +1301,8 @@
                             </div>
                         </div>
                         <div class="family-card" style="grid-column: 1 / -1; text-align: center; padding: 30px;">
-                            <button onclick="startVideoCall()" style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 15px 40px; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
+                            <button onclick="startVideoCall()"
+                                style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 15px 40px; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);">
                                 一键视频通话
                             </button>
                         </div>
@@ -1201,17 +1319,26 @@
                     <p>随时查看服务状态，掌握服务进度</p>
                 </div>
                 <div class="appointment-tabs" style="display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap;">
-                    <button class="tab-button active" onclick="switchTab('all', event)" style="padding: 10px 20px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; transition: all 0.3s ease;">全部</button>
-                    <button class="tab-button" onclick="switchTab('pending', event)" style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 25px; background: white; color: #4a5568; cursor: pointer; transition: all 0.3s ease;">已预约</button>
-                    <button class="tab-button" onclick="switchTab('processing', event)" style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 25px; background: white; color: #4a5568; cursor: pointer; transition: all 0.3s ease;">处理中</button>
-                    <button class="tab-button" onclick="switchTab('completed', event)" style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 25px; background: white; color: #4a5568; cursor: pointer; transition: all 0.3s ease;">已完成</button>
-                    <button class="tab-button" onclick="switchTab('evaluated', event)" style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 25px; background: white; color: #4a5568; cursor: pointer; transition: all 0.3s ease;">已评价</button>
+                    <button class="tab-button active" onclick="switchTab('all', event)"
+                        style="padding: 10px 20px; border: none; border-radius: 25px; background: #667eea; color: white; cursor: pointer; transition: all 0.3s ease;">全部</button>
+                    <button class="tab-button" onclick="switchTab('pending', event)"
+                        style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 25px; background: white; color: #4a5568; cursor: pointer; transition: all 0.3s ease;">已预约</button>
+                    <button class="tab-button" onclick="switchTab('processing', event)"
+                        style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 25px; background: white; color: #4a5568; cursor: pointer; transition: all 0.3s ease;">处理中</button>
+                    <button class="tab-button" onclick="switchTab('completed', event)"
+                        style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 25px; background: white; color: #4a5568; cursor: pointer; transition: all 0.3s ease;">已完成</button>
+                    <button class="tab-button" onclick="switchTab('evaluated', event)"
+                        style="padding: 10px 20px; border: 1px solid #e2e8f0; border-radius: 25px; background: white; color: #4a5568; cursor: pointer; transition: all 0.3s ease;">已评价</button>
                 </div>
-                <div class="appointment-list" style="background: #f7fafc; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);">
-                    <div class="appointment-item" style="background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <div class="appointment-list"
+                    style="background: #f7fafc; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);">
+                    <div class="appointment-item"
+                        style="background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                             <h4 style="font-size: 1.1rem; color: #2d3748;">医疗护理服务</h4>
-                            <span style="padding: 5px 15px; border-radius: 20px; background: #e2e8f0; color: #4a5568; font-size: 0.9rem;">已预约</span>
+                            <span
+                                style="padding: 5px 15px; border-radius: 20px; background: #e2e8f0; color: #4a5568; font-size: 0.9rem;">已预约</span>
                         </div>
                         <div style="space-y: 10px; margin-bottom: 15px;">
                             <p><strong>预约时间：</strong>2024-03-16 10:00</p>
@@ -1219,14 +1346,19 @@
                             <p><strong>服务内容：</strong>血压监测、药物指导</p>
                         </div>
                         <div style="display: flex; gap: 10px;">
-                            <button style="padding: 8px 16px; border: 1px solid #667eea; border-radius: 20px; background: white; color: #667eea; cursor: pointer; transition: all 0.3s ease;">取消预约</button>
-                            <button style="padding: 8px 16px; border: none; border-radius: 20px; background: #667eea; color: white; cursor: pointer; transition: all 0.3s ease;">查看详情</button>
+                            <button
+                                style="padding: 8px 16px; border: 1px solid #667eea; border-radius: 20px; background: white; color: #667eea; cursor: pointer; transition: all 0.3s ease;">取消预约</button>
+                            <button
+                                style="padding: 8px 16px; border: none; border-radius: 20px; background: #667eea; color: white; cursor: pointer; transition: all 0.3s ease;">查看详情</button>
                         </div>
                     </div>
-                    <div class="appointment-item" style="background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <div class="appointment-item"
+                        style="background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                             <h4 style="font-size: 1.1rem; color: #2d3748;">家政服务</h4>
-                            <span style="padding: 5px 15px; border-radius: 20px; background: #e2e8f0; color: #4a5568; font-size: 0.9rem;">处理中</span>
+                            <span
+                                style="padding: 5px 15px; border-radius: 20px; background: #e2e8f0; color: #4a5568; font-size: 0.9rem;">处理中</span>
                         </div>
                         <div style="space-y: 10px; margin-bottom: 15px;">
                             <p><strong>预约时间：</strong>2024-03-15 14:00</p>
@@ -1234,13 +1366,17 @@
                             <p><strong>服务内容：</strong>家居清洁、整理</p>
                         </div>
                         <div style="display: flex; gap: 10px;">
-                            <button style="padding: 8px 16px; border: none; border-radius: 20px; background: #667eea; color: white; cursor: pointer; transition: all 0.3s ease;">联系服务人员</button>
+                            <button
+                                style="padding: 8px 16px; border: none; border-radius: 20px; background: #667eea; color: white; cursor: pointer; transition: all 0.3s ease;">联系服务人员</button>
                         </div>
                     </div>
-                    <div class="appointment-item" style="background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <div class="appointment-item"
+                        style="background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                             <h4 style="font-size: 1.1rem; color: #2d3748;">健康监测</h4>
-                            <span style="padding: 5px 15px; border-radius: 20px; background: #48bb78; color: white; font-size: 0.9rem;">已完成</span>
+                            <span
+                                style="padding: 5px 15px; border-radius: 20px; background: #48bb78; color: white; font-size: 0.9rem;">已完成</span>
                         </div>
                         <div style="space-y: 10px; margin-bottom: 15px;">
                             <p><strong>服务时间：</strong>2024-03-14 09:00</p>
@@ -1248,8 +1384,10 @@
                             <p><strong>服务内容：</strong>血压、心率、血氧监测</p>
                         </div>
                         <div style="display: flex; gap: 10px;">
-                            <button style="padding: 8px 16px; border: none; border-radius: 20px; background: #667eea; color: white; cursor: pointer; transition: all 0.3s ease;">查看报告</button>
-                            <button style="padding: 8px 16px; border: 1px solid #667eea; border-radius: 20px; background: white; color: #667eea; cursor: pointer; transition: all 0.3s ease;">评价服务</button>
+                            <button
+                                style="padding: 8px 16px; border: none; border-radius: 20px; background: #667eea; color: white; cursor: pointer; transition: all 0.3s ease;">查看报告</button>
+                            <button
+                                style="padding: 8px 16px; border: 1px solid #667eea; border-radius: 20px; background: white; color: #667eea; cursor: pointer; transition: all 0.3s ease;">评价服务</button>
                         </div>
                     </div>
                 </div>
@@ -1257,44 +1395,56 @@
         </section>
 
         <!-- 消息通知中心 -->
-        <section class="notifications" id="notifications" style="padding: 80px 0; background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);">
+        <section class="notifications" id="notifications"
+            style="padding: 80px 0; background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);">
             <div class="container">
                 <div class="section-title fade-in">
                     <h2>消息通知中心</h2>
                     <p>及时了解各类提醒和通知</p>
                 </div>
-                <div class="notification-content" style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);">
+                <div class="notification-content"
+                    style="background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);">
                     <div class="notification-list">
-                        <div class="notification-item" style="background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); border-left: 4px solid #667eea;">
-                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                        <div class="notification-item"
+                            style="background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); border-left: 4px solid #667eea;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
                                 <h4 style="font-size: 1.1rem; color: #2d3748;">服药提醒</h4>
                                 <span style="font-size: 0.9rem; color: #718096;">10分钟前</span>
                             </div>
                             <p style="color: #4a5568;">请服用降压药，剂量：1片，温水送服</p>
                         </div>
-                        <div class="notification-item" style="background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); border-left: 4px solid #e53e3e;">
-                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                        <div class="notification-item"
+                            style="background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); border-left: 4px solid #e53e3e;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
                                 <h4 style="font-size: 1.1rem; color: #2d3748;">异常报警提醒</h4>
                                 <span style="font-size: 0.9rem; color: #718096;">2小时前</span>
                             </div>
                             <p style="color: #4a5568;">心率异常：检测到心率为95次/分，请注意观察</p>
                         </div>
-                        <div class="notification-item" style="background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); border-left: 4px solid #48bb78;">
-                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                        <div class="notification-item"
+                            style="background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); border-left: 4px solid #48bb78;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
                                 <h4 style="font-size: 1.1rem; color: #2d3748;">服务预约提醒</h4>
                                 <span style="font-size: 0.9rem; color: #718096;">昨天</span>
                             </div>
                             <p style="color: #4a5568;">您预约的医疗护理服务将在明天10:00开始，请做好准备</p>
                         </div>
-                        <div class="notification-item" style="background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); border-left: 4px solid #ed8936;">
-                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                        <div class="notification-item"
+                            style="background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); border-left: 4px solid #ed8936;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
                                 <h4 style="font-size: 1.1rem; color: #2d3748;">社区活动提醒</h4>
                                 <span style="font-size: 0.9rem; color: #718096;">2天前</span>
                             </div>
                             <p style="color: #4a5568;">本周六上午9:00，社区将举办老年人健康讲座，欢迎参加</p>
                         </div>
-                        <div class="notification-item" style="background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); border-left: 4px solid #9f7aea;">
-                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                        <div class="notification-item"
+                            style="background: #f7fafc; border-radius: 15px; padding: 20px; margin-bottom: 15px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); border-left: 4px solid #9f7aea;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
                                 <h4 style="font-size: 1.1rem; color: #2d3748;">家属留言提醒</h4>
                                 <span style="font-size: 0.9rem; color: #718096;">3天前</span>
                             </div>
@@ -1377,22 +1527,22 @@
             document.getElementById('mainContent').style.display = 'block';
             // 移除body的role-selection类，恢复正常布局
             document.body.classList.remove('role-selection');
-            
+
             // 隐藏所有角色专属内容
             document.querySelectorAll('.role-content').forEach(content => {
                 content.style.display = 'none';
             });
-            
+
             // 显示当前角色的专属内容
             document.getElementById(`${role}Content`).style.display = 'block';
-            
+
             // 更新角色标识
             document.getElementById('currentRole').textContent = getRoleName(role);
             document.getElementById('roleWelcome').textContent = `欢迎，${getRoleName(role)}！`;
-            
+
             // 滚动到顶部
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            
+
             // 显示欢迎信息
             alert(`欢迎，${getRoleName(role)}用户！`);
         }
@@ -1417,11 +1567,11 @@
                 document.getElementById('roleSelection').style.display = 'block';
                 // 添加body的role-selection类，恢复居中布局
                 document.body.classList.add('role-selection');
-                
+
                 // 重置角色标识
                 document.getElementById('currentRole').textContent = '请选择身份';
                 document.getElementById('roleWelcome').textContent = '让科技温暖晚年生活，为老年人提供全方位的智能化养老服务';
-                
+
                 // 隐藏所有角色专属内容
                 document.querySelectorAll('.role-content').forEach(content => {
                     content.style.display = 'none';
@@ -1455,6 +1605,18 @@
             window.location.href = '09-健康监测.html';
         }
 
+        // 打开用药提醒页面
+        function openMedicineReminder() {
+            alert('用药提醒功能已启动！');
+            // 这里可以添加具体的用药提醒逻辑
+        }
+
+        // 打开预约服务页面
+        function openAppointment() {
+            // 滚动到预约服务部分
+            document.getElementById('appointments').scrollIntoView({ behavior: 'smooth' });
+        }
+
         // 切换预约标签
         function switchTab(tab, event) {
             // 移除所有标签的活动状态
@@ -1464,7 +1626,7 @@
                 button.style.color = '#4a5568';
                 button.style.border = '1px solid #e2e8f0';
             });
-            
+
             // 设置当前标签为活动状态
             if (event && event.target) {
                 event.target.classList.add('active');
@@ -1472,7 +1634,7 @@
                 event.target.style.color = 'white';
                 event.target.style.border = 'none';
             }
-            
+
             // 这里可以添加根据标签筛选预约的逻辑
             console.log('切换到标签：', tab);
         }
@@ -1480,11 +1642,11 @@
         // 滚动动画
         function animateOnScroll() {
             const elements = document.querySelectorAll('.fade-in');
-            
+
             elements.forEach(element => {
                 const elementTop = element.getBoundingClientRect().top;
                 const elementVisible = 150;
-                
+
                 if (elementTop < window.innerHeight - elementVisible) {
                     element.classList.add('visible');
                 }
@@ -1494,12 +1656,12 @@
         // 数字统计动画
         function animateStats() {
             const stats = document.querySelectorAll('.stat-number');
-            
+
             stats.forEach(stat => {
                 const target = parseInt(stat.getAttribute('data-target'));
                 const increment = target / 100;
                 let current = 0;
-                
+
                 const updateStat = () => {
                     if (current < target) {
                         current += increment;
@@ -1509,7 +1671,7 @@
                         stat.textContent = target;
                     }
                 };
-                
+
                 updateStat();
             });
         }
@@ -1519,11 +1681,11 @@
             const button = document.querySelector('.emergency-button');
             const loading = document.getElementById('emergency-loading');
             const text = document.getElementById('emergency-text');
-            
+
             loading.style.display = 'inline-block';
             text.textContent = '正在连接...';
             button.disabled = true;
-            
+
             // 模拟呼叫过程
             setTimeout(() => {
                 alert('紧急呼叫已发出！救援人员正在赶来，请保持冷静。');
@@ -1539,12 +1701,12 @@
             const medicineBoxCard = document.querySelector('div[onclick="openSmartMedicineBox()"]');
             medicineBoxCard.style.transform = 'scale(0.95)';
             medicineBoxCard.style.transition = 'transform 0.1s ease';
-            
+
             setTimeout(() => {
                 medicineBoxCard.style.transform = 'translateY(-5px)';
                 medicineBoxCard.style.transition = 'all 0.3s ease';
             }, 100);
-            
+
             // 显示跳转提示
             setTimeout(() => {
                 // 在新窗口打开智能药盒管理页面
@@ -1558,12 +1720,12 @@
             const smartWatchCard = document.querySelector('div[onclick="openSmartWatch()"]');
             smartWatchCard.style.transform = 'scale(0.95)';
             smartWatchCard.style.transition = 'transform 0.1s ease';
-            
+
             setTimeout(() => {
                 smartWatchCard.style.transform = 'translateY(-5px)';
                 smartWatchCard.style.transition = 'all 0.3s ease';
             }, 100);
-            
+
             // 显示跳转提示
             setTimeout(() => {
                 // 在新窗口打开智能手表页面
@@ -1577,12 +1739,12 @@
             const lifeServiceCard = document.querySelector('div[onclick="openLifeServices()"]');
             lifeServiceCard.style.transform = 'scale(0.95)';
             lifeServiceCard.style.transition = 'transform 0.1s ease';
-            
+
             setTimeout(() => {
                 lifeServiceCard.style.transform = 'translateY(-5px)';
                 lifeServiceCard.style.transition = 'all 0.3s ease';
             }, 100);
-            
+
             // 显示跳转提示
             setTimeout(() => {
                 // 在新窗口打开生活服务页面
@@ -1596,12 +1758,12 @@
             const healthCard = document.querySelector('div[onclick="openHealthMonitoring()"]');
             healthCard.style.transform = 'scale(0.95)';
             healthCard.style.transition = 'transform 0.1s ease';
-            
+
             setTimeout(() => {
                 healthCard.style.transform = 'translateY(-5px)';
                 healthCard.style.transition = 'all 0.3s ease';
             }, 100);
-            
+
             // 显示跳转提示
             setTimeout(() => {
                 // 在新窗口打开健康监测页面
@@ -1615,12 +1777,12 @@
             const entertainmentCard = document.querySelector('div[onclick="openEntertainmentSocial()"]');
             entertainmentCard.style.transform = 'scale(0.95)';
             entertainmentCard.style.transition = 'transform 0.1s ease';
-            
+
             setTimeout(() => {
                 entertainmentCard.style.transform = 'translateY(-5px)';
                 entertainmentCard.style.transition = 'all 0.3s ease';
             }, 100);
-            
+
             // 显示跳转提示
             setTimeout(() => {
                 // 在新窗口打开娱乐社交页面
@@ -1634,12 +1796,12 @@
             const smartCallCard = document.querySelector('.feature-card:nth-child(2)'); // 智能呼叫卡片
             smartCallCard.style.transform = 'scale(0.95)';
             smartCallCard.style.transition = 'transform 0.1s ease';
-            
+
             setTimeout(() => {
                 smartCallCard.style.transform = 'translateY(-5px)';
                 smartCallCard.style.transition = 'all 0.3s ease';
             }, 100);
-            
+
             // 显示跳转提示
             setTimeout(() => {
                 // 在新窗口打开智能呼叫页面
@@ -1653,12 +1815,12 @@
             const homeSecurityCard = document.querySelector('.feature-card:nth-child(3)'); // 居家安防卡片
             homeSecurityCard.style.transform = 'scale(0.95)';
             homeSecurityCard.style.transition = 'transform 0.1s ease';
-            
+
             setTimeout(() => {
                 homeSecurityCard.style.transform = 'translateY(-5px)';
                 homeSecurityCard.style.transition = 'all 0.3s ease';
             }, 100);
-            
+
             // 显示跳转提示
             setTimeout(() => {
                 // 在新窗口打开居家安防页面
@@ -1672,12 +1834,12 @@
             const medicalCareCard = document.querySelector('.feature-card:nth-child(5)'); // 医疗陪护卡片
             medicalCareCard.style.transform = 'scale(0.95)';
             medicalCareCard.style.transition = 'transform 0.1s ease';
-            
+
             setTimeout(() => {
                 medicalCareCard.style.transform = 'translateY(-5px)';
                 medicalCareCard.style.transition = 'all 0.3s ease';
             }, 100);
-            
+
             // 显示跳转提示
             setTimeout(() => {
                 // 在新窗口打开医疗陪护页面
@@ -1691,12 +1853,12 @@
             const smartLockCard = document.querySelector('.device-card:nth-child(2)'); // 智能门锁卡片
             smartLockCard.style.transform = 'scale(0.95)';
             smartLockCard.style.transition = 'transform 0.1s ease';
-            
+
             setTimeout(() => {
                 smartLockCard.style.transform = 'translateY(-5px)';
                 smartLockCard.style.transition = 'all 0.3s ease';
             }, 100);
-            
+
             // 显示跳转提示
             setTimeout(() => {
                 // 在新窗口打开智能门锁页面
@@ -1710,12 +1872,12 @@
             const smartCameraCard = document.querySelector('.device-card:nth-child(3)'); // 智能摄像头卡片
             smartCameraCard.style.transform = 'scale(0.95)';
             smartCameraCard.style.transition = 'transform 0.1s ease';
-            
+
             setTimeout(() => {
                 smartCameraCard.style.transform = 'translateY(-5px)';
                 smartCameraCard.style.transition = 'all 0.3s ease';
             }, 100);
-            
+
             // 显示跳转提示
             setTimeout(() => {
                 // 在新窗口打开智能摄像头页面
@@ -1729,12 +1891,12 @@
             const smartBedCard = document.querySelector('.device-card:nth-child(6)'); // 智能床垫卡片
             smartBedCard.style.transform = 'scale(0.95)';
             smartBedCard.style.transition = 'transform 0.1s ease';
-            
+
             setTimeout(() => {
                 smartBedCard.style.transform = 'translateY(-5px)';
                 smartBedCard.style.transition = 'all 0.3s ease';
             }, 100);
-            
+
             // 显示跳转提示
             setTimeout(() => {
                 // 在新窗口打开智能床垫页面
@@ -1748,12 +1910,12 @@
             const emergencyButtonCard = document.querySelector('.device-card:nth-child(7)'); // 紧急按钮卡片
             emergencyButtonCard.style.transform = 'scale(0.95)';
             emergencyButtonCard.style.transition = 'transform 0.1s ease';
-            
+
             setTimeout(() => {
                 emergencyButtonCard.style.transform = 'translateY(-5px)';
                 emergencyButtonCard.style.transition = 'all 0.3s ease';
             }, 100);
-            
+
             // 显示跳转提示
             setTimeout(() => {
                 // 在新窗口打开紧急按钮页面
@@ -1797,4 +1959,5 @@
         }, 60000); // 每分钟更新一次
     </script>
 </body>
+
 </html>
