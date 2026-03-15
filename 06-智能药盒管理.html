@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能药盒 - 服药管理系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #2d3748;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .medicine-pill {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+        }
+
+        /* 今日服药提醒 */
+        .today-medications {
+            grid-column: 1 / -1;
+        }
+
+        .medication-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .medication-item.pending {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+        }
+
+        .medication-item.taken {
+            background: linear-gradient(135deg, #55efc4, #00b894);
+        }
+
+        .medication-item.overdue {
+            background: linear-gradient(135deg, #fd79a8, #e84393);
+        }
+
+        .medication-time {
+            font-weight: bold;
+            margin-right: 15px;
+            min-width: 80px;
+        }
+
+        .medication-info {
+            flex: 1;
+        }
+
+        .medication-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .medication-dosage {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .medication-status {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .status-pending {
+            background: #f39c12;
+        }
+
+        .status-taken {
+            background: #27ae60;
+        }
+
+        .status-overdue {
+            background: #e74c3c;
+        }
+
+        /* 药物库存 */
+        .medicine-inventory {
+            display: grid;
+            gap: 15px;
+        }
+
+        .medicine-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid #ecf0f1;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .medicine-item:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .medicine-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            width: 50px;
+            text-align: center;
+        }
+
+        .medicine-details {
+            flex: 1;
+        }
+
+        .medicine-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .medicine-quantity {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .quantity-status {
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .quantity-normal {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .quantity-low {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .quantity-empty {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* 用药记录 */
+        .medication-history {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-time {
+            font-weight: bold;
+            margin-right: 15px;
+            min-width: 70px;
+            color: #667eea;
+        }
+
+        .history-medicine {
+            flex: 1;
+        }
+
+        .history-status {
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* 添加药物表单 */
+        .add-medicine-form {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #ecf0f1;
+            color: #2d3748;
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #e17055, #d63031);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 时间选择器 */
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .time-slot {
+            padding: 10px;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .time-slot.selected {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        /* 语音提醒 */
+        .voice-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+            animation: alertPulse 0.5s ease;
+        }
+
+        @keyframes alertPulse {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        .alert-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .alert-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .alert-content p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        /* 统计面板 */
+        .stats-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .stats-panel {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* 通知样式 */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            z-index: 1001;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 标题区域 -->
+        <div class="header">
+            <div class="medicine-pill">💊</div>
+            <h1>智能药盒管理系统</h1>
+            <p style="text-align: center; color: #666;">科学管理用药，守护健康生活</p>
+            <div style="text-align: center; margin-top: 15px;">
+                <button class="btn btn-primary" onclick="toggleAddForm()">添加新药物</button>
+                <button class="btn btn-secondary" onclick="simulateVoiceAlert()">语音提醒测试</button>
+            </div>
+        </div>
+
+        <!-- 统计面板 -->
+        <div class="stats-panel">
+            <div class="stat-card">
+                <span class="stat-number" id="todayMedications">3</span>
+                <div class="stat-label">今日应服</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="takenMedications">1</span>
+                <div class="stat-label">已服用</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="overdueMedications">0</span>
+                <div class="stat-label">逾期</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="medicineTypes">5</span>
+                <div class="stat-label">药物种类</div>
+            </div>
+        </div>
+
+        <!-- 添加药物表单 -->
+        <div class="add-medicine-form" id="addMedicineForm">
+            <h2>💊 添加新药物</h2>
+            <form id="medicineForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="medicineName">药物名称</label>
+                        <input type="text" id="medicineName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicineType">药物类型</label>
+                        <select id="medicineType">
+                            <option value="胶囊">胶囊</option>
+                            <option value="片剂">片剂</option>
+                            <option value="颗粒">颗粒</option>
+                            <option value="口服液">口服液</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="medicineDosage">单次剂量</label>
+                        <input type="text" id="medicineDosage" placeholder="如：1片、10ml" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="medicineQuantity">库存数量</label>
+                        <input type="number" id="medicineQuantity" min="0" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>服药时间</label>
+                    <div class="time-slots">
+                        <div class="time-slot" data-time="06:00">早餐前</div>
+                        <div class="time-slot" data-time="06:30">早餐后</div>
+                        <div class="time-slot" data-time="12:00">午餐前</div>
+                        <div class="time-slot" data-time="12:30">午餐后</div>
+                        <div class="time-slot" data-time="18:00">晚餐前</div>
+                        <div class="time-slot" data-time="18:30">晚餐后</div>
+                        <div class="time-slot" data-time="21:00">睡前</div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="medicineDuration">疗程天数</label>
+                        <input type="number" id="medicineDuration" min="1" value="7">
+                    </div>
+                    <div class="form-group">
+                        <label for="medicineReminder">提醒方式</label>
+                        <select id="medicineReminder">
+                            <option value="语音+震动">语音+震动</option>
+                            <option value="语音">语音提醒</option>
+                            <option value="震动">震动提醒</option>
+                            <option value="无声">仅显示</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="medicineNotes">用药说明</label>
+                    <textarea id="medicineNotes" rows="3" placeholder="如：饭后30分钟服用，多饮水"></textarea>
+                </div>
+
+                <div style="text-align: center;">
+                    <button type="submit" class="btn btn-success">保存药物</button>
+                    <button type="button" class="btn btn-secondary" onclick="toggleAddForm()">取消</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- 主要内容区域 -->
+        <div class="main-grid">
+            <!-- 今日服药提醒 -->
+            <div class="card today-medications">
+                <h2><span class="card-icon">⏰</span>今日服药提醒</h2>
+                <div id="todayMedsList">
+                    <div class="medication-item pending">
+                        <div class="medication-time">08:00</div>
+                        <div class="medication-info">
+                            <div class="medication-name">降压药（氨氯地平）</div>
+                            <div class="medication-dosage">5mg，1片</div>
+                        </div>
+                        <div class="medication-status status-pending">待服用</div>
+                    </div>
+                    
+                    <div class="medication-item taken">
+                        <div class="medication-time">12:00</div>
+                        <div class="medication-info">
+                            <div class="medication-name">维生素D3</div>
+                            <div class="medication-dosage">400IU，1粒</div>
+                        </div>
+                        <div class="medication-status status-taken">已服用</div>
+                    </div>
+                    
+                    <div class="medication-item overdue">
+                        <div class="medication-time">18:00</div>
+                        <div class="medication-info">
+                            <div class="medication-name">降糖药（二甲双胍）</div>
+                            <div class="medication-dosage">500mg，1片</div>
+                        </div>
+                        <div class="medication-status status-overdue">已逾期</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 药物库存 -->
+            <div class="card">
+                <h2><span class="card-icon">📦</span>药物库存</h2>
+                <div class="medicine-inventory">
+                    <div class="medicine-item">
+                        <div class="medicine-icon">💊</div>
+                        <div class="medicine-details">
+                            <div class="medicine-name">降压药（氨氯地平）</div>
+                            <div class="medicine-quantity">剩余：15片</div>
+                        </div>
+                        <div class="quantity-status quantity-normal">充足</div>
+                    </div>
+                    
+                    <div class="medicine-item">
+                        <div class="medicine-icon">💊</div>
+                        <div class="medicine-details">
+                            <div class="medicine-name">维生素D3</div>
+                            <div class="medicine-quantity">剩余：25粒</div>
+                        </div>
+                        <div class="quantity-status quantity-normal">充足</div>
+                    </div>
+                    
+                    <div class="medicine-item">
+                        <div class="medicine-icon">💊</div>
+                        <div class="medicine-details">
+                            <div class="medicine-name">降糖药（二甲双胍）</div>
+                            <div class="medicine-quantity">剩余：3片</div>
+                        </div>
+                        <div class="quantity-status quantity-low">不足</div>
+                    </div>
+                    
+                    <div class="medicine-item">
+                        <div class="medicine-icon">💊</div>
+                        <div class="medicine-details">
+                            <div class="medicine-name">钙片</div>
+                            <div class="medicine-quantity">剩余：0片</div>
+                        </div>
+                        <div class="quantity-status quantity-empty">缺货</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 用药记录 -->
+            <div class="card">
+                <h2><span class="card-icon">📋</span>用药记录</h2>
+                <div class="medication-history">
+                    <div class="history-item">
+                        <div class="history-time">12:05</div>
+                        <div class="history-medicine">维生素D3 - 400IU</div>
+                        <div class="history-status status-taken">已服用</div>
+                    </div>
+                    
+                    <div class="history-item">
+                        <div class="history-time">08:15</div>
+                        <div class="history-medicine">降压药（氨氯地平） - 5mg</div>
+                        <div class="history-status status-taken">已服用</div>
+                    </div>
+                    
+                    <div class="history-item">
+                        <div class="history-time">昨天 20:30</div>
+                        <div class="history-medicine">钙片 - 500mg</div>
+                        <div class="history-status status-taken">已服用</div>
+                    </div>
+                    
+                    <div class="history-item">
+                        <div class="history-time">昨天 18:30</div>
+                        <div class="history-medicine">降糖药（二甲双胍） - 500mg</div>
+                        <div class="history-status status-overdue">漏服</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 语音提醒弹窗 -->
+    <div class="voice-alert" id="voiceAlert">
+        <div class="alert-icon">💊</div>
+        <div class="alert-content">
+            <h3>服药提醒</h3>
+            <p>现在是服药时间</p>
+            <div id="alertMedicineName">请服用：降压药（氨氯地平）5mg</div>
+            <div style="margin-top: 20px;">
+                <button class="btn btn-success" onclick="markAsTaken()">已服用</button>
+                <button class="btn btn-danger" onclick="skipReminder()">跳过</button>
+                <button class="btn btn-secondary" onclick="delayReminder()">延后15分钟</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 通知 -->
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // 全局变量
+        let selectedTimeSlots = [];
+        let medications = [];
+        let todayMedications = [
+            { time: '08:00', name: '降压药（氨氯地平）', dosage: '5mg', status: 'pending', type: 'pending' },
+            { time: '12:00', name: '维生素D3', dosage: '400IU', status: 'taken', type: 'taken' },
+            { time: '18:00', name: '降糖药（二甲双胍）', dosage: '500mg', status: 'overdue', type: 'overdue' }
+        ];
+
+        // 切换添加药物表单
+        function toggleAddForm() {
+            const form = document.getElementById('addMedicineForm');
+            form.style.display = form.style.display === 'none' || form.style.display === '' ? 'block' : 'none';
+        }
+
+        // 时间段选择
+        document.querySelectorAll('.time-slot').forEach(slot => {
+            slot.addEventListener('click', function() {
+                const time = this.getAttribute('data-time');
+                if (this.classList.contains('selected')) {
+                    this.classList.remove('selected');
+                    selectedTimeSlots = selectedTimeSlots.filter(t => t !== time);
+                } else {
+                    this.classList.add('selected');
+                    selectedTimeSlots.push(time);
+                }
+            });
+        });
+
+        // 表单提交
+        document.getElementById('medicineForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const medicineData = {
+                name: document.getElementById('medicineName').value,
+                type: document.getElementById('medicineType').value,
+                dosage: document.getElementById('medicineDosage').value,
+                quantity: parseInt(document.getElementById('medicineQuantity').value),
+                times: selectedTimeSlots,
+                duration: parseInt(document.getElementById('medicineDuration').value),
+                reminder: document.getElementById('medicineReminder').value,
+                notes: document.getElementById('medicineNotes').value
+            };
+
+            // 保存药物
+            medications.push(medicineData);
+            
+            // 重置表单
+            this.reset();
+            selectedTimeSlots = [];
+            document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('selected'));
+            
+            // 隐藏表单
+            toggleAddForm();
+            
+            // 显示成功通知
+            showNotification('药物添加成功！', 'success');
+            
+            // 更新界面
+            updateInventory();
+        });
+
+        // 显示语音提醒
+        function showVoiceAlert(medicineName, dosage) {
+            const alert = document.getElementById('voiceAlert');
+            document.getElementById('alertMedicineName').textContent = `请服用：${medicineName} ${dosage}`;
+            alert.style.display = 'block';
+            
+            // 语音播放（模拟）
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(`现在是服药时间，请服用${medicineName}，剂量${dosage}`);
+                utterance.lang = 'zh-CN';
+                speechSynthesis.speak(utterance);
+            }
+            
+            // 自动震动（模拟）
+            if (navigator.vibrate) {
+                navigator.vibrate([200, 100, 200]);
+            }
+        }
+
+        // 模拟语音提醒
+        function simulateVoiceAlert() {
+            showVoiceAlert('降压药（氨氯地平）', '5mg');
+        }
+
+        // 标记为已服用
+        function markAsTaken() {
+            document.getElementById('voiceAlert').style.display = 'none';
+            showNotification('服药记录已保存！', 'success');
+            updateStats();
+        }
+
+        // 跳过提醒
+        function skipReminder() {
+            document.getElementById('voiceAlert').style.display = 'none';
+            showNotification('提醒已跳过', 'warning');
+        }
+
+        // 延后提醒
+        function delayReminder() {
+            document.getElementById('voiceAlert').style.display = 'none';
+            showNotification('提醒已延后15分钟', 'info');
+        }
+
+        // 显示通知
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification show ${type}`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // 更新药物库存
+        function updateInventory() {
+            // 这里可以添加更新库存显示的逻辑
+            console.log('库存已更新');
+        }
+
+        // 更新统计数据
+        function updateStats() {
+            const todayTaken = todayMedications.filter(med => med.status === 'taken').length;
+            const todayPending = todayMedications.filter(med => med.status === 'pending').length;
+            const todayOverdue = todayMedications.filter(med => med.status === 'overdue').length;
+            
+            document.getElementById('todayMedications').textContent = todayPending + todayTaken + todayOverdue;
+            document.getElementById('takenMedications').textContent = todayTaken;
+            document.getElementById('overdueMedications').textContent = todayOverdue;
+            document.getElementById('medicineTypes').textContent = medications.length + 4; // 现有4种药物
+        }
+
+        // 定期检查服药时间
+        function checkMedicationTime() {
+            const now = new Date();
+            const currentTime = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+            
+            // 检查是否有药物到了服用时间
+            todayMedications.forEach(med => {
+                if (med.status === 'pending' && currentTime >= med.time) {
+                    // 检查是否已经过了15分钟
+                    const medTime = new Date();
+                    const [hours, minutes] = med.time.split(':').map(Number);
+                    medTime.setHours(hours, minutes, 0, 0);
+                    
+                    const timeDiff = (now - medTime) / (1000 * 60); // 转换为分钟
+                    
+                    if (timeDiff > 15) {
+                        // 标记为逾期
+                        med.status = 'overdue';
+                        updateMedicationList();
+                    } else {
+                        // 显示提醒
+                        showVoiceAlert(med.name, med.dosage);
+                    }
+                }
+            });
+        }
+
+        // 更新服药列表
+        function updateMedicationList() {
+            const container = document.getElementById('todayMedsList');
+            container.innerHTML = '';
+            
+            todayMedications.forEach(med => {
+                const item = document.createElement('div');
+                item.className = `medication-item ${med.status}`;
+                
+                item.innerHTML = `
+                    <div class="medication-time">${med.time}</div>
+                    <div class="medication-info">
+                        <div class="medication-name">${med.name}</div>
+                        <div class="medication-dosage">${med.dosage}</div>
+                    </div>
+                    <div class="medication-status status-${med.status}">
+                        ${med.status === 'pending' ? '待服用' : 
+                          med.status === 'taken' ? '已服用' : '已逾期'}
+                    </div>
+                `;
+                
+                container.appendChild(item);
+            });
+            
+            updateStats();
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            updateMedicationList();
+            
+            // 每分钟检查一次服药时间
+            setInterval(checkMedicationTime, 60000);
+            
+            // 立即检查一次
+            setTimeout(checkMedicationTime, 5000);
+        });
+
+        // 页面可见性变化时的处理
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                checkMedicationTime();
+            }
+        });
+    </script>
+</body>
+</html>
